@@ -3,861 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Maky Restaurante - Sabor tradicional del páramo ecuatoriano. Disfruta nuestra auténtica cocina andina con platos como caldo de gallina, yahuarlocro, seco de chivo y más." />
   <title>Maky — Sabor Tradicional del Páramo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
 
-  <style>
-    /* =============================================
-       VARIABLES & RESET
-    ============================================= */
-    :root {
-      --verde-bosque: #1b3022;
-      --verde-medio: #2d4f35;
-      --verde-claro: #4a7c59;
-      --tierra: #a67c52;
-      --tierra-clara: #c9a07a;
-      --crema: #f5efe4;
-      --crema-oscura: #ede3d2;
-      --blanco: #fdfaf5;
-      --texto-oscuro: #2a1f14;
-      --texto-medio: #5c4033;
-      --dorado: #c9a84c;
-      --dorado-suave: #e8cc7a;
-
-      --font-titulo: 'Playfair Display', Georgia, serif;
-      --font-display: 'Cinzel', serif;
-      --font-cuerpo: 'Lora', Georgia, serif;
-
-      --radio: 12px;
-      --radio-grande: 20px;
-      --sombra: 0 4px 24px rgba(27,48,34,0.12);
-      --sombra-hover: 0 12px 40px rgba(27,48,34,0.22);
-      --transicion: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font-cuerpo);
-      background-color: var(--crema);
-      color: var(--texto-oscuro);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* =============================================
-       TEXTURA DE FONDO
-    ============================================= */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a67c52' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* =============================================
-       HERO / CABECERA
-    ============================================= */
-    .hero {
-      position: relative;
-      background: linear-gradient(160deg, var(--verde-bosque) 0%, var(--verde-medio) 55%, #3a6644 100%);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-      padding: 60px 24px 80px;
-    }
-
-    /* Capa de textura orgánica sobre el hero */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(166,124,82,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(74,124,89,0.15) 0%, transparent 55%);
-      pointer-events: none;
-    }
-
-    /* Líneas decorativas */
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 120px;
-      background: var(--crema);
-      clip-path: ellipse(55% 100% at 50% 100%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Ornamento superior */
-    .ornamento {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 32px;
-      opacity: 0.7;
-    }
-
-    .ornamento-linea {
-      width: 80px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--tierra-clara));
-    }
-
-    .ornamento-linea.derecha {
-      background: linear-gradient(90deg, var(--tierra-clara), transparent);
-    }
-
-    .ornamento svg {
-      fill: var(--tierra-clara);
-      width: 20px;
-      height: 20px;
-    }
-
-    /* Logo área */
-    .logo-wrapper {
-      margin-bottom: 16px;
-    }
-
-    /* Imagen del logo desde carpeta local */
-    /* images/logo_maky.png — Logo oficial de Maky con montañas y cebollín verde */
-    .logo-img {
-      width: 180px;
-      height: auto;
-      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
-    }
-
-    .logo-texto {
-      font-family: var(--font-titulo);
-      font-size: clamp(4rem, 12vw, 7rem);
-      font-weight: 700;
-      font-style: italic;
-      color: var(--blanco);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      text-shadow: 0 4px 30px rgba(0,0,0,0.4);
-    }
-
-    .logo-texto span {
-      color: var(--dorado-suave);
-    }
-
-    .slogan {
-      font-family: var(--font-cuerpo);
-      font-style: italic;
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      color: var(--crema-oscura);
-      letter-spacing: 0.08em;
-      margin-top: 12px;
-      opacity: 0.9;
-    }
-
-    /* Manifiesto */
-    .manifiesto {
-      margin-top: 40px;
-      max-width: 540px;
-      padding: 28px 36px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radio-grande);
-      backdrop-filter: blur(8px);
-    }
-
-    .manifiesto-titulo {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: var(--dorado-suave);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .manifiesto p {
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: rgba(253,250,245,0.85);
-      font-style: italic;
-    }
-
-    /* Flecha scroll */
-    .scroll-cta {
-      position: absolute;
-      bottom: 140px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-family: var(--font-display);
-      animation: bounce 2.5s ease-in-out infinite;
-    }
-
-    .scroll-cta svg {
-      width: 20px;
-      height: 20px;
-      stroke: rgba(255,255,255,0.4);
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* =============================================
-       NAVEGACIÓN STICKY
-    ============================================= */
-    .nav-sticky {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--verde-bosque);
-      border-bottom: 2px solid var(--tierra);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .nav-sticky::-webkit-scrollbar { display: none; }
-
-    .nav-inner {
-      display: flex;
-      justify-content: center;
-      gap: 4px;
-      padding: 0 16px;
-      min-width: max-content;
-      margin: 0 auto;
-    }
-
-    .nav-item {
-      display: inline-block;
-      padding: 14px 20px;
-      font-family: var(--font-display);
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(253,250,245,0.65);
-      text-decoration: none;
-      transition: var(--transicion);
-      border-bottom: 2px solid transparent;
-      white-space: nowrap;
-      position: relative;
-      top: 2px;
-    }
-
-    .nav-item:hover, .nav-item.activo {
-      color: var(--dorado-suave);
-      border-bottom-color: var(--tierra);
-    }
-
-    /* =============================================
-       CONTENEDOR PRINCIPAL
-    ============================================= */
-    .contenedor {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* =============================================
-       ENCABEZADOS DE SECCIÓN
-    ============================================= */
-    .seccion {
-      padding: 80px 0 60px;
-    }
-
-    .seccion-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .seccion-etiqueta {
-      display: inline-block;
-      font-family: var(--font-display);
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--tierra);
-      margin-bottom: 16px;
-      padding: 6px 20px;
-      border: 1px solid var(--tierra-clara);
-      border-radius: 30px;
-    }
-
-    .seccion-titulo {
-      font-family: var(--font-titulo);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      font-style: italic;
-      color: var(--verde-bosque);
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-
-    .seccion-divider {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--tierra), var(--dorado));
-      margin: 0 auto;
-      border-radius: 2px;
-    }
-
-    /* =============================================
-       GRIDS DE PLATOS
-    ============================================= */
-    .grid-platos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 28px;
-    }
-
-    .grid-platos.dos-col {
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    }
-
-    /* =============================================
-       CARD DE PLATO
-    ============================================= */
-    .card-plato {
-      background: var(--blanco);
-      border-radius: var(--radio-grande);
-      overflow: hidden;
-      box-shadow: var(--sombra);
-      transition: var(--transicion);
-      position: relative;
-      border: 1px solid rgba(166,124,82,0.15);
-    }
-
-    .card-plato:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--sombra-hover);
-      border-color: var(--tierra-clara);
-    }
-
-    .card-imagen {
-      position: relative;
-      height: 220px;
-      overflow: hidden;
-      background: var(--crema-oscura);
-    }
-
-    /* Cada <img> tiene un comentario encima indicando qué foto va ahí */
-    .card-imagen img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .card-plato:hover .card-imagen img {
-      transform: scale(1.06);
-    }
-
-    /* Badge de precio */
-    .precio-badge {
-      position: absolute;
-      bottom: 14px;
-      right: 14px;
-      background: var(--verde-bosque);
-      color: var(--dorado-suave);
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 30px;
-      letter-spacing: 0.05em;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-    }
-
-    /* Badge especial */
-    .badge-especial {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: linear-gradient(135deg, var(--tierra), var(--dorado));
-      color: var(--blanco);
-      font-family: var(--font-display);
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-
-    .card-cuerpo {
-      padding: 24px 24px 28px;
-    }
-
-    .plato-nombre {
-      font-family: var(--font-titulo);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--verde-bosque);
-      margin-bottom: 10px;
-      line-height: 1.25;
-    }
-
-    .plato-descripcion {
-      font-size: 0.9rem;
-      color: var(--texto-medio);
-      line-height: 1.65;
-    }
-
-    .plato-nota {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 12px;
-      font-size: 0.78rem;
-      font-style: italic;
-      color: var(--tierra);
-    }
-
-    /* =============================================
-       CARD HORIZONTAL (para starters)
-    ============================================= */
-    .card-horizontal {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      background: var(--blanco);
-      border-radius: var(--radio-grande);
-      overflow: hidden;
-      box-shadow: var(--sombra);
-      transition: var(--transicion);
-      border: 1px solid rgba(166,124,82,0.15);
-    }
-
-    .card-horizontal:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--sombra-hover);
-      border-color: var(--tierra-clara);
-    }
-
-    .card-horizontal .card-imagen {
-      width: 160px;
-      flex-shrink: 0;
-      height: auto;
-    }
-
-    .card-horizontal .card-cuerpo {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .card-horizontal .precio-inline {
-      display: inline-block;
-      margin-top: 14px;
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      color: var(--verde-bosque);
-      font-weight: 600;
-    }
-
-    /* =============================================
-       SECCIÓN SEPARADORA VISUAL (páramo)
-    ============================================= */
-    .separador-paramo {
-      background: linear-gradient(180deg, var(--crema) 0%, var(--crema-oscura) 100%);
-      padding: 48px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .separador-paramo::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 20px,
-        rgba(166,124,82,0.03) 20px,
-        rgba(166,124,82,0.03) 40px
-      );
-    }
-
-    .separador-texto {
-      position: relative;
-      font-family: var(--font-titulo);
-      font-size: clamp(1.2rem, 4vw, 1.8rem);
-      font-style: italic;
-      color: var(--verde-bosque);
-      opacity: 0.6;
-    }
-
-    /* =============================================
-       SECCIÓN SOPAS (fondo diferente)
-    ============================================= */
-    .seccion-sopas {
-      background: linear-gradient(135deg, var(--verde-bosque) 0%, #243d2c 100%);
-      padding: 80px 0 70px;
-    }
-
-    .seccion-sopas .seccion-etiqueta {
-      color: var(--dorado-suave);
-      border-color: rgba(201,168,76,0.4);
-    }
-
-    .seccion-sopas .seccion-titulo {
-      color: var(--crema);
-    }
-
-    .seccion-sopas .seccion-divider {
-      background: linear-gradient(90deg, var(--dorado-suave), var(--tierra-clara));
-    }
-
-    .seccion-sopas .card-plato {
-      background: rgba(253,250,245,0.06);
-      border-color: rgba(255,255,255,0.08);
-    }
-
-    .seccion-sopas .card-plato:hover {
-      background: rgba(253,250,245,0.1);
-      border-color: rgba(201,168,76,0.3);
-    }
-
-    .seccion-sopas .plato-nombre {
-      color: var(--crema);
-    }
-
-    .seccion-sopas .plato-descripcion {
-      color: rgba(237,227,210,0.75);
-    }
-
-    .seccion-sopas .plato-nota {
-      color: var(--dorado-suave);
-    }
-
-    /* =============================================
-       SECCIÓN BEBIDAS
-    ============================================= */
-    .seccion-bebidas {
-      background: var(--crema-oscura);
-      padding: 80px 0;
-    }
-
-    .bebidas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .bebida-item {
-      background: var(--blanco);
-      border-radius: var(--radio);
-      padding: 20px 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid rgba(166,124,82,0.2);
-      transition: var(--transicion);
-      box-shadow: 0 2px 10px rgba(27,48,34,0.06);
-    }
-
-    .bebida-item:hover {
-      background: var(--verde-bosque);
-      border-color: var(--verde-bosque);
-      transform: scale(1.02);
-    }
-
-    .bebida-item:hover .bebida-nombre,
-    .bebida-item:hover .bebida-precio {
-      color: var(--crema);
-    }
-
-    .bebida-nombre {
-      font-family: var(--font-cuerpo);
-      font-size: 0.9rem;
-      color: var(--texto-oscuro);
-      transition: var(--transicion);
-    }
-
-    .bebida-precio {
-      font-family: var(--font-display);
-      font-size: 0.95rem;
-      color: var(--verde-bosque);
-      font-weight: 600;
-      transition: var(--transicion);
-    }
-
-    /* Imagen decorativa bebida */
-    .bebidas-imagen-deco {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    /* images/chicha_jora.jpg — Vaso de chicha de jora artesanal con espuma */
-    .bebidas-imagen-deco img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 6px solid var(--tierra-clara);
-      box-shadow: 0 8px 30px rgba(166,124,82,0.25);
-    }
-
-    /* =============================================
-       PIE DE PÁGINA
-    ============================================= */
-    footer {
-      background: var(--verde-bosque);
-      color: var(--crema);
-      text-align: center;
-      padding: 56px 24px 40px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--tierra), var(--dorado), var(--tierra));
-    }
-
-    .footer-logo {
-      font-family: var(--font-titulo);
-      font-size: 2.8rem;
-      font-style: italic;
-      color: var(--dorado-suave);
-      margin-bottom: 6px;
-    }
-
-    .footer-slogan {
-      font-style: italic;
-      color: rgba(237,227,210,0.6);
-      font-size: 0.9rem;
-      margin-bottom: 28px;
-    }
-
-    .footer-hashtag {
-      display: inline-block;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--dorado-suave);
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      padding: 10px 28px;
-      border-radius: 30px;
-      margin-bottom: 36px;
-    }
-
-    .footer-redes {
-      margin-bottom: 32px;
-      font-size: 0.8rem;
-      color: rgba(237,227,210,0.5);
-      letter-spacing: 0.15em;
-      font-family: var(--font-display);
-      text-transform: uppercase;
-    }
-
-    /* Tarjetas de crédito */
-    .tarjetas-titulo {
-      font-family: var(--font-display);
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(237,227,210,0.4);
-      margin-bottom: 16px;
-    }
-
-    .tarjetas-lista {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .tarjeta-badge {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: rgba(253,250,245,0.75);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .tarjeta-badge .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--dorado);
-    }
-
-    .footer-copy {
-      margin-top: 40px;
-      font-size: 0.75rem;
-      color: rgba(237,227,210,0.3);
-      letter-spacing: 0.05em;
-    }
-
-    /* =============================================
-       GUAGUAS (kids) — SECCIÓN ESPECIAL
-    ============================================= */
-    .seccion-guaguas {
-      background: linear-gradient(135deg, #f5efe4 0%, #ede3d2 100%);
-      padding: 80px 0;
-    }
-
-    .guaguas-card {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--blanco);
-      border-radius: var(--radio-grande);
-      overflow: hidden;
-      box-shadow: var(--sombra-hover);
-      border: 2px solid rgba(166,124,82,0.2);
-      transition: var(--transicion);
-    }
-
-    .guaguas-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(27,48,34,0.2);
-      border-color: var(--tierra);
-    }
-
-    .guaguas-card .card-imagen {
-      height: 280px;
-    }
-
-    .guaguas-card .card-cuerpo {
-      padding: 32px;
-      text-align: center;
-    }
-
-    .guaguas-card .plato-nombre {
-      font-size: 1.6rem;
-    }
-
-    .guaguas-card .precio-grande {
-      display: inline-block;
-      margin-top: 18px;
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      color: var(--verde-bosque);
-      background: linear-gradient(135deg, rgba(27,48,34,0.08), rgba(166,124,82,0.1));
-      padding: 10px 32px;
-      border-radius: 30px;
-      border: 1px solid rgba(27,48,34,0.12);
-    }
-
-    /* =============================================
-       IMAGEN PLACEHOLDER (cuando no hay foto)
-    ============================================= */
-    .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--crema-oscura) 0%, #d4c4a8 100%);
-      color: var(--tierra);
-      font-family: var(--font-titulo);
-      font-style: italic;
-      font-size: 0.85rem;
-      gap: 8px;
-      opacity: 0.8;
-    }
-
-    .img-placeholder svg {
-      width: 36px;
-      height: 36px;
-      stroke: var(--tierra);
-      opacity: 0.5;
-    }
-
-    /* =============================================
-       ANIMACIONES DE ENTRADA
-    ============================================= */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .animar {
-      animation: fadeUp 0.6s ease forwards;
-    }
-
-    .card-plato, .card-horizontal, .bebida-item {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-    }
-
-    .card-plato.visible,
-    .card-horizontal.visible,
-    .bebida-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* =============================================
-       RESPONSIVE
-    ============================================= */
-    @media (max-width: 768px) {
-      .seccion { padding: 60px 0 48px; }
-      .grid-platos { grid-template-columns: 1fr; }
-      .grid-platos.dos-col { grid-template-columns: 1fr; }
-      .card-horizontal { flex-direction: column; }
-      .card-horizontal .card-imagen { width: 100%; height: 180px; }
-      .nav-inner { justify-content: flex-start; }
-      .hero { min-height: 90vh; }
-      .manifiesto { padding: 22px 22px; }
-    }
-
-    @media (max-width: 480px) {
-      .bebidas-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <a href="#inicio" class="skip-link" style="position:absolute; top:-40px; left:0; background:var(--verde-bosque); color:var(--blanco); padding:8px 16px; z-index:1000; transition:top 0.3s;">Saltar al contenido principal</a>
 
   <!-- =========================================================
        HERO
@@ -874,8 +30,7 @@
 
       <div class="logo-wrapper">
         <!-- images/logo_maky.png — Logo oficial de Maky: tipografía cursiva verde con montañas y cebollín -->
-        <img src="images/logo_maky.png" alt="Logo Maky Restaurante" class="logo-img"
-             onerror="this.style.display='none'; document.getElementById('logo-texto-fallback').style.display='block';" />
+        <img src="images/logo_maky.jpg" alt="Logo Maky Restaurante" class="logo-img" />
         <div id="logo-texto-fallback" class="logo-texto" style="display:none;">
           M<span>a</span>k<span>y</span>
         </div>
@@ -927,12 +82,50 @@
 
       <div class="grid-platos dos-col">
 
+        <!-- CARD: Pan de ajo -->
+          <article class="card-horizontal card-plato" aria-label="Pan de ajo">
+            <div class="card-imagen">
+              <!-- images/pan_ajo.jpg — Pan artesanal caliente con mantequilla de ajo y hierbas -->
+              <img src="images/pan_ajo.jpg" alt="Pan de ajo" />
+            </div>
+            <div class="card-cuerpo">
+              <h3 class="plato-nombre">Pan de ajo</h3>
+              <p class="plato-descripcion">Pan artesanal caliente con mantequilla de ajo y hierbas aromáticas.</p>
+              <span class="precio-inline">$2.00</span>
+            </div>
+          </article>
+
+          <!-- CARD: Maduro con queso gratinado -->
+        <article class="card-horizontal card-plato" aria-label="Maduro con queso gratinado">
+          <div class="card-imagen">
+            <!-- images/maduro_queso.jpg — Maduro horneado con queso gratinado -->
+            <img src="images/maduro_queso.jpg" alt="Maduro con queso gratinado" />
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Maduro con queso gratinado</h3>
+            <p class="plato-descripcion">Plátano maduro al horno de leña acompañado con queso de la casa gratinado.</p>
+            <span class="precio-inline">$2.50</span>
+          </div>
+        </article>
+
+        <!-- CARD: Ensalada tradicional -->
+<article class="card-horizontal card-plato" aria-label="Ensalada tradicional">
+  <div class="card-imagen">
+    <!-- images/ensalada_tradicional.jpg — Ensalada fresca con tomate, cebolla, pimiento, lechuga y albahaca -->
+    <img src="images/ensalada_tradicional.jpg" alt="Ensalada tradicional" />
+  </div>
+  <div class="card-cuerpo">
+    <h3 class="plato-nombre">Ensalada tradicional</h3>
+    <p class="plato-descripcion">Tomate, cebolla, pimiento, lechuga y albahaca.</p>
+    <span class="precio-inline">$3.00</span>
+  </div>
+</article>
+
         <!-- CARD: Habas con queso -->
         <article class="card-horizontal card-plato" aria-label="Habas con queso">
           <div class="card-imagen">
             <!-- images/habas_queso.jpg — Habas tiernas verdes del páramo servidas con cubitos de queso blanco de la casa en un plato de barro -->
-            <img src="images/habas_queso.jpg" alt="Habas con queso"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><path d=\'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\'/></svg><span>Habas con queso</span></div>'" />
+            <img src="images/habas_queso.jpg" alt="Habas con queso" />
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Habas con queso</h3>
@@ -945,13 +138,12 @@
         <article class="card-horizontal card-plato" aria-label="Mote con chicharrón">
           <div class="card-imagen">
             <!-- images/mote_chicharron.jpg — Tazón de maíz mote cocido acompañado de chicharrón crujiente de cerdo, presentación rústica -->
-            <img src="images/mote_chicharron.jpg" alt="Mote con chicharrón"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><path d=\'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\'/></svg><span>Mote con chicharrón</span></div>'" />
+            <img src="images/mote_chicharron.jpg" alt="Mote con chicharrón" />
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Mote con chicharrón</h3>
-            <p class="plato-descripcion">Mote acompañado del más delicioso chicharrón.</p>
-            <span class="precio-inline">$3.50</span>
+            <p class="plato-descripcion">Delicioso chicharrón con mote acompañado de hierbitas de la casa.</p>
+            <span class="precio-inline">$4.50</span>
           </div>
         </article>
 
@@ -976,12 +168,11 @@
         <article class="card-plato" aria-label="Caldo de gallina">
           <div class="card-imagen">
             <!-- images/caldo_gallina.jpg — Tazón de caldo claro de gallina de campo con presa de pollo, cebolla verde y cilantro, cocinado a leña -->
-            <img src="images/caldo_gallina.jpg" alt="Caldo de gallina"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M12 8v4l3 3\'/></svg><span>Caldo de gallina</span></div>'" />
-            <span class="precio-badge">$5.00</span>
+            <img src="images/caldo_gallina.jpg" alt="Caldo de gallina" />
+            <span class="precio-badge">$5.50</span>
           </div>
           <div class="card-cuerpo">
-            <h3 class="plato-nombre">Caldo de gallina</h3>
+            <h3 class="plato-nombre">Caldo de gallina criolla</h3>
             <p class="plato-descripcion">Caldo de gallina de campo cocida a fuego lento en estufa de leña.</p>
           </div>
         </article>
@@ -990,9 +181,8 @@
         <article class="card-plato" aria-label="Yahuarlocro">
           <div class="card-imagen">
             <!-- images/yahuarlocro.jpg — Olla de barro con yahuarlocro cremoso color naranja, decorado con aguacate, tomate y sangrecita de borrego encima -->
-            <img src="images/yahuarlocro.jpg" alt="Yahuarlocro"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M12 8v4l3 3\'/></svg><span>Yahuarlocro</span></div>'" />
-            <span class="precio-badge">$5.00</span>
+            <img src="images/yahuarlocro.jpg" alt="Yahuarlocro" />
+            <span class="precio-badge">$5.50</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Yahuarlocro</h3>
@@ -1004,8 +194,7 @@
         <article class="card-plato" aria-label="Locro de queso">
           <div class="card-imagen">
             <!-- images/locro_queso.jpg — Tazón de locro cremoso amarillo de papa con cubitos de queso blanco flotando y hoja de cilantro fresco, acompañado de aguacate al lado -->
-            <img src="images/locro_queso.jpg" alt="Locro de queso"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M12 8v4l3 3\'/></svg><span>Locro de queso</span></div>'" />
+            <img src="images/locro_queso.jpg" alt="Locro de queso" />
             <span class="precio-badge">$3.50</span>
           </div>
           <div class="card-cuerpo">
@@ -1013,6 +202,19 @@
             <p class="plato-descripcion">Cremoso locro de papa acompañado de queso y aguacate.</p>
           </div>
         </article>
+
+        <!-- CARD: Sopa del día -->
+          <article class="card-plato" aria-label="Sopa del día">
+            <div class="card-imagen">
+              <!-- images/sopa_dia.jpg — Sopa casera del día -->
+              <img src="images/sopa_dia.jpg" alt="Sopa del día" />
+              <span class="precio-badge">$1.75</span>
+            </div>
+            <div class="card-cuerpo">
+              <h3 class="plato-nombre">Sopa del día</h3>
+              <p class="plato-descripcion">Preparación casera elaborada diariamente con ingredientes frescos de temporada.</p>
+            </div>
+          </article>
 
       </div>
     </div>
@@ -1038,32 +240,17 @@
 
       <div class="grid-platos">
 
-        <!-- CARD: Seco de chivo -->
-        <article class="card-plato" aria-label="Seco de chivo">
-          <div class="card-imagen">
-            <!-- images/seco_chivo.jpg — Plato de seco de cordero (chivo) con arroz colorado amarillo moldeado en pirámide, aguacate, lechuga y tomate al lado -->
-            <img src="images/seco_chivo.jpg" alt="Seco de chivo"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><path d=\'M3 6h18M3 12h18M3 18h18\'/></svg><span>Seco de chivo</span></div>'" />
-            <span class="precio-badge">$7.00</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Seco de chivo</h3>
-            <p class="plato-descripcion">Estofado de cordero suave, servido con aguacate, tomate, lechuga y acompañado de tradicional arroz colorado.</p>
-          </div>
-        </article>
-
         <!-- CARD: Borrego a la piedra — PLATO ESTRELLA -->
         <article class="card-plato" aria-label="Borrego a la piedra - Plato Estrella">
           <div class="card-imagen">
             <!-- images/borrego_piedra.jpg — Chuleta/costilla de borrego asada sobre piedra volcánica negra, con papitas pequeñas "Cecilia" doradas al lado y ensalada fresca, salsa de la casa en recipiente pequeño -->
-            <img src="images/borrego_piedra.jpg" alt="Borrego a la piedra"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><path d=\'M3 6h18M3 12h18M3 18h18\'/></svg><span>Borrego a la piedra</span></div>'" />
-            <span class="precio-badge">$7.00</span>
+            <img src="images/borrego_piedra.jpg" alt="Borrego a la piedra" />
+            <span class="precio-badge">$8.00</span>
             <span class="badge-especial">⭐ Plato Estrella</span>
           </div>
           <div class="card-cuerpo">
-            <h3 class="plato-nombre">Borrego a la piedra</h3>
-            <p class="plato-descripcion">250 gr. de borrego asado en piedra volcánica, papitas Cecilia, ensalada fresca y salsa de la casa.</p>
+            <h3 class="plato-nombre">Borrego Andino</h3>
+            <p class="plato-descripcion">Corte especial de cordero, papas al vapor, ensalada de la casa acompañada de salsa Maky.</p>
           </div>
         </article>
 
@@ -1071,9 +258,8 @@
         <article class="card-plato" aria-label="Cuy">
           <div class="card-imagen">
             <!-- images/cuy.jpg — Cuy entero horneado a la leña con color dorado y piel crocante, servido sobre cama de papas bañadas en salsa de maní con lechuga y aguacate -->
-            <img src="images/cuy.jpg" alt="Cuy al horno de leña"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><path d=\'M3 6h18M3 12h18M3 18h18\'/></svg><span>Cuy</span></div>'" />
-            <span class="precio-badge">$17.00</span>
+            <img src="images/cuy.jpg" alt="Cuy al horno de leña" />
+            <span class="precio-badge">$20.00</span>
             <span class="badge-especial">Bajo reservación</span>
           </div>
           <div class="card-cuerpo">
@@ -1092,8 +278,7 @@
         <article class="card-plato" aria-label="Carne montada">
           <div class="card-imagen">
             <!-- images/carne_montada.jpg — Filete de res a la plancha sobre arroz blanco con papas fritas, dos huevos fritos encima y ensalada de lechuga y tomate al lado -->
-            <img src="images/carne_montada.jpg" alt="Carne montada"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><path d=\'M3 6h18M3 12h18M3 18h18\'/></svg><span>Carne montada</span></div>'" />
+            <img src="images/carne_montada.jpg" alt="Carne montada" />
             <span class="precio-badge">$5.50</span>
           </div>
           <div class="card-cuerpo">
@@ -1102,23 +287,101 @@
           </div>
         </article>
 
-        <!-- CARD: Chuleta al horno -->
-        <article class="card-plato" aria-label="Chuleta al horno">
+        <!-- CARD: Seco de chivo -->
+        <article class="card-plato" aria-label="Seco de chivo">
           <div class="card-imagen">
-            <!-- images/chuleta_horno.jpg — Chuleta de cerdo horneada en horno de leña, color dorado, servida con arroz blanco, papas fritas y ensalada fresca -->
-            <img src="images/chuleta_horno.jpg" alt="Chuleta al horno de leña"
-                 onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><path d=\'M3 6h18M3 12h18M3 18h18\'/></svg><span>Chuleta al horno</span></div>'" />
-            <span class="precio-badge">$5.00</span>
+            <!-- images/seco_chivo.jpg -->
+            <img src="images/seco_chivo.jpg" alt="Seco de chivo" />
+            <span class="precio-badge">$8.00</span>
           </div>
           <div class="card-cuerpo">
-            <h3 class="plato-nombre">Chuleta al horno</h3>
-            <p class="plato-descripcion">Chuleta horneada en horno de leña, arroz, papas fritas y ensalada fresca.</p>
+            <h3 class="plato-nombre">Seco de chivo</h3>
+            <p class="plato-descripcion">Deliciosa y suave carne de cordero acompañada de arroz amarillo y ensalada de la casa.</p>
+          </div>
+        </article>
+
+        <!-- CARD: Costillas andinas BBQ -->
+        <article class="card-plato" aria-label="Costillas andinas BBQ">
+          <div class="card-imagen">
+            <!-- images/costillas_bbq.jpg -->
+            <img src="images/costillas_bbq.jpg" alt="Costillas andinas BBQ" />
+            <span class="precio-badge">$10.99</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Costillas andinas bañadas en salsa BBQ</h3>
+            <p class="plato-descripcion">Costillas suaves bañadas en salsa BBQ acompañadas de papitas al vapor y ensalada fresca.</p>
+          </div>
+        </article>
+
+        <!-- CARD: T-bone andino -->
+        <article class="card-plato" aria-label="T-bone andino">
+          <div class="card-imagen">
+            <!-- images/tbone_andino.jpg -->
+            <img src="images/tbone_andino.jpg" alt="T-bone andino" />
+            <span class="precio-badge">$11.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">T-bone andino</h3>
+            <p class="plato-descripcion">Acompañado de papitas al vapor y ensalada de la casa.</p>
+          </div>
+        </article>
+
+        <!-- CARD: Ribeye andino -->
+        <article class="card-plato" aria-label="Ribeye andino">
+          <div class="card-imagen">
+            <!-- images/ribeye_andino.jpg -->
+            <img src="images/ribeye_andino.jpg" alt="Ribeye andino" />
+            <span class="precio-badge">$12.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Ribeye andino</h3>
+            <p class="plato-descripcion">Acompañado de papitas al vapor y ensalada de la casa.</p>
+          </div>
+        </article>
+
+        <!-- CARD: Lomo andino — NUEVO -->
+        <article class="card-plato" aria-label="Lomo andino">
+          <div class="card-imagen">
+            <!-- images/lomo_andino.jpg -->
+            <img src="images/lomo_andino.jpg" alt="Lomo andino" />
+            <span class="precio-badge">$11.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Lomo andino</h3>
+            <p class="plato-descripcion">250g de lomo fino acompañado de papitas al vapor y ensalada de la casa.</p>
+          </div>
+        </article>
+
+        <!-- CARD: Chuleta de cerdo a la piedra -->
+        <article class="card-plato" aria-label="Chuleta de cerdo a la piedra">
+          <div class="card-imagen">
+            <!-- images/chuleta_horno.jpg — Chuleta de cerdo a la piedra, papitas al vapor, arroz y ensalada fresca -->
+            <img src="images/chuleta_horno.jpg" alt="Chuleta de cerdo a la piedra" />
+            <span class="precio-badge">$6.50</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Chuleta de cerdo a la piedra</h3>
+            <p class="plato-descripcion">300g de chuleta de cerdo acompañados de papitas al vapor, arroz y ensalada de la casa.</p>
+          </div>
+        </article>
+
+        <!-- CARD: Filete de pollo a la piedra -->
+        <article class="card-plato" aria-label="Filete de pollo a la piedra">
+          <div class="card-imagen">
+            <!-- images/filete_pollo.jpg -->
+            <img src="images/filete_pollo.jpg" alt="Filete de pollo a la piedra" />
+            <span class="precio-badge">$5.50</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Filete de pollo a la piedra</h3>
+            <p class="plato-descripcion">250g de pechuga de pollo acompañado con papitas al vapor y ensalada de la casa.</p>
           </div>
         </article>
 
       </div>
     </div>
   </section>
+
 
   <!-- =========================================================
        PARA LOS GUAGUAS
@@ -1134,8 +397,7 @@
       <article class="guaguas-card card-plato">
         <div class="card-imagen">
           <!-- images/alitas_guachaleña.jpg — Alitas de pollo horneadas color caramelo brillante bañadas en salsa de uvilla y miel, acompañadas de papas fritas doradas en un plato rústico -->
-          <img src="images/alitas_guachalena.jpg" alt="Alitas en salsa Guachaleña"
-               onerror="this.outerHTML='<div class=\'img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke-width=\'1.5\' stroke-linecap=\'round\'><path d=\'M3 6h18M3 12h18M3 18h18\'/></svg><span>Alitas Guachaleña</span></div>'" />
+          <img src="images/alitas_guachalena.jpg" alt="Alitas en salsa Guachaleña" />
         </div>
         <div class="card-cuerpo">
           <h3 class="plato-nombre">Alitas en salsa Guachaleña</h3>
@@ -1160,8 +422,7 @@
 
       <div class="bebidas-imagen-deco">
         <!-- images/chicha_jora.jpg — Jarra de barro o vaso con chicha de jora artesanal de color ámbar con espuma, sobre mesa de madera -->
-        <img src="images/chicha_jora.jpg" alt="Chicha de Jora artesanal"
-             onerror="this.style.display='none'" />
+        <img src="images/chicha_jora.jpeg" alt="Chicha de Jora artesanal" />
       </div>
 
       <div class="bebidas-grid">
@@ -1198,44 +459,7 @@
     <p class="footer-copy">© 2025 Maky Restaurante — Todos los derechos reservados</p>
   </footer>
 
-  <!-- =========================================================
-       JAVASCRIPT: Scroll animations & nav active
-  ========================================================= -->
-  <script>
-    // Intersection Observer para animar cards al hacer scroll
-    const observables = document.querySelectorAll('.card-plato, .card-horizontal, .bebida-item');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          // Stagger delay basado en posición
-          const siblings = Array.from(entry.target.parentElement.children);
-          const idx = siblings.indexOf(entry.target);
-          entry.target.style.transitionDelay = `${idx * 80}ms`;
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    observables.forEach(el => observer.observe(el));
-
-    // Nav activo al hacer scroll
-    const secciones = document.querySelectorAll('section[id]');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navItems.forEach(item => item.classList.remove('activo'));
-          const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('activo');
-        }
-      });
-    }, { threshold: 0.4 });
-
-    secciones.forEach(s => navObserver.observe(s));
-  </script>
+  <script src="script.js" defer></script>
 
 </body>
 </html>
