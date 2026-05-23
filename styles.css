@@ -73,7 +73,6 @@ body::before {
   padding: 60px 24px 80px;
 }
 
-/* Capa de textura orgánica sobre el hero */
 .hero::before {
   content: '';
   position: absolute;
@@ -84,7 +83,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Líneas decorativas */
 .hero::after {
   content: '';
   position: absolute;
@@ -172,6 +170,7 @@ body::before {
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: var(--radio-grande);
   backdrop-filter: blur(8px);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
 
 .manifiesto-titulo {
@@ -181,6 +180,7 @@ body::before {
   color: var(--dorado-suave);
   text-transform: uppercase;
   margin-bottom: 14px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
 
 .manifiesto p {
@@ -190,10 +190,9 @@ body::before {
   font-style: italic;
 }
 
-/* Flecha scroll */
 .scroll-cta {
   position: absolute;
-  bottom: 140px;
+  bottom: 25px; /* ◄ Cambiado de 140px a 25px para bajarlo al fondo */
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -201,12 +200,13 @@ body::before {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: rgba(255,255,255,0.5);
-  font-size: 0.7rem;
+  color: var(--verde-claro);
+  font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-family: var(--font-display);
   animation: bounce 2.5s ease-in-out infinite;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
 
 .scroll-cta svg {
@@ -221,19 +221,40 @@ body::before {
 }
 
 /* =============================================
-   NAVEGACIÓN STICKY
+   NAVEGACIÓN STICKY — con Glassmorphism + indicador de scroll
 ============================================= */
 .nav-sticky {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--verde-bosque);
-  border-bottom: 2px solid var(--tierra);
-  overflow-x: auto;
-  scrollbar-width: none;
+  /* ✨ MEJORA: Fondo esmerilado + sombra elegante */
+  background: rgba(27, 48, 34, 0.88);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  overflow: hidden; /* importante: el wrapper controla el overflow */
 }
 
-.nav-sticky::-webkit-scrollbar { display: none; }
+/* Wrapper interno que sí hace scroll */
+.nav-scroll-wrapper {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  /* ✨ MEJORA: Degradado derecho como indicador de "hay más" */
+  -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  position: relative;
+}
+
+.nav-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+/* Cuando el scroll llega al final, quitar el fade */
+.nav-scroll-wrapper.al-final {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
 
 .nav-inner {
   display: flex;
@@ -260,7 +281,8 @@ body::before {
   top: 2px;
 }
 
-.nav-item:hover, .nav-item.activo {
+.nav-item:hover,
+.nav-item.activo {
   color: var(--dorado-suave);
   border-bottom-color: var(--tierra);
 }
@@ -333,22 +355,49 @@ body::before {
 }
 
 /* =============================================
-   CARD DE PLATO
+   CARD DE PLATO — con profundidad y lujo ✨
 ============================================= */
 .card-plato {
   background: var(--blanco);
   border-radius: var(--radio-grande);
   overflow: hidden;
-  box-shadow: var(--sombra);
-  transition: var(--transicion);
+  box-shadow:
+    var(--sombra),
+    0 0 0 0 rgba(201,168,76,0); /* anillo dorado latente */
+  transition:
+    transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.38s ease,
+    border-color 0.38s ease;
   position: relative;
   border: 1px solid rgba(166,124,82,0.15);
+  will-change: transform;
 }
 
+/* ✨ MEJORA: Hover con elevación dramática y brillo sutil */
 .card-plato:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--sombra-hover);
-  border-color: var(--tierra-clara);
+  transform: translateY(-10px) scale(1.01);
+  box-shadow:
+    0 20px 60px rgba(27,48,34,0.22),
+    0 8px 20px rgba(27,48,34,0.12),
+    0 0 0 1.5px rgba(201,168,76,0.35);
+  border-color: rgba(201,168,76,0.4);
+}
+
+/* Brillo interno en hover */
+.card-plato::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radio-grande);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-plato:hover::after {
+  opacity: 1;
 }
 
 .card-imagen {
@@ -362,27 +411,47 @@ body::before {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-plato:hover .card-imagen img {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
-/* Badge de precio */
+/* ✨ MEJORA: Gradiente sobre imagen para mejorar legibilidad del badge */
+.card-imagen::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(27,48,34,0.55), transparent);
+  pointer-events: none;
+}
+
+/* Badge de precio — ✨ tono dorado más elegante */
 .precio-badge {
   position: absolute;
   bottom: 14px;
   right: 14px;
-  background: var(--verde-bosque);
+  background: linear-gradient(135deg, var(--verde-bosque), #243d2c);
   color: var(--dorado-suave);
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 30px;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  letter-spacing: 0.06em;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3), 0 0 0 1px rgba(201,168,76,0.2);
+  z-index: 2;
+  position: relative;
+  z-index: 2;
+}
+
+/* Reposicionar badge dentro de .card-imagen */
+.card-imagen .precio-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
 }
 
 /* Badge especial */
@@ -399,6 +468,7 @@ body::before {
   padding: 5px 12px;
   border-radius: 20px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 2;
 }
 
 .card-cuerpo {
@@ -441,14 +511,19 @@ body::before {
   border-radius: var(--radio-grande);
   overflow: hidden;
   box-shadow: var(--sombra);
-  transition: var(--transicion);
+  transition:
+    transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.38s ease,
+    border-color 0.38s ease;
   border: 1px solid rgba(166,124,82,0.15);
 }
 
 .card-horizontal:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--sombra-hover);
-  border-color: var(--tierra-clara);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow:
+    0 20px 60px rgba(27,48,34,0.22),
+    0 0 0 1.5px rgba(201,168,76,0.35);
+  border-color: rgba(201,168,76,0.4);
 }
 
 .card-horizontal .card-imagen {
@@ -464,13 +539,15 @@ body::before {
   justify-content: center;
 }
 
+/* ✨ MEJORA: Precio inline con acento dorado */
 .card-horizontal .precio-inline {
   display: inline-block;
   margin-top: 14px;
   font-family: var(--font-display);
   font-size: 1.05rem;
-  color: var(--verde-bosque);
+  color: #753405;
   font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 /* =============================================
@@ -598,7 +675,7 @@ body::before {
 .bebida-precio {
   font-family: var(--font-display);
   font-size: 0.95rem;
-  color: var(--verde-bosque);
+  color: var(--dorado);
   font-weight: 600;
   transition: var(--transicion);
 }
@@ -619,7 +696,7 @@ body::before {
 }
 
 /* =============================================
-   PIE DE PÁGINA
+   PIE DE PÁGINA — ✨ con redes sociales reales
 ============================================= */
 footer {
   background: var(--verde-bosque);
@@ -668,13 +745,67 @@ footer::before {
   margin-bottom: 36px;
 }
 
+/* ✨ MEJORA: Redes sociales reales con íconos y hover elegante */
 .footer-redes {
-  margin-bottom: 32px;
-  font-size: 0.8rem;
-  color: rgba(237,227,210,0.5);
-  letter-spacing: 0.15em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.footer-red-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: rgba(237,227,210,0.55);
   font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  padding: 10px 22px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 30px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255,255,255,0.04);
+}
+
+.footer-red-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: transform 0.35s ease;
+}
+
+.footer-red-link:hover {
+  color: var(--dorado-suave);
+  border-color: rgba(201,168,76,0.4);
+  background: rgba(201,168,76,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.footer-red-link:hover svg {
+  transform: scale(1.15);
+}
+
+/* Color individual por red */
+.footer-red-link.fb:hover  { color: #8ab4f8; border-color: rgba(138,180,248,0.3); }
+.footer-red-link.tt:hover  { color: #f0f0f0; border-color: rgba(255,255,255,0.25); }
+.footer-red-link.wa:hover  { color: #6ee37a; border-color: rgba(110,227,122,0.3); }
+.footer-red-link.gm:hover  { color: var(--tierra-clara); border-color: rgba(201,160,122,0.4); }
+
+/* Separador de redes */
+.footer-redes-titulo {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(237,227,210,0.3);
+  margin-bottom: 16px;
 }
 
 /* Tarjetas de crédito */
@@ -760,16 +891,18 @@ footer::before {
   font-size: 1.6rem;
 }
 
+/* ✨ MEJORA: precio grande con acento dorado */
 .guaguas-card .precio-grande {
   display: inline-block;
   margin-top: 18px;
   font-family: var(--font-display);
   font-size: 1.4rem;
-  color: var(--verde-bosque);
-  background: linear-gradient(135deg, rgba(27,48,34,0.08), rgba(166,124,82,0.1));
+  color: var(--dorado);
+  background: linear-gradient(135deg, rgba(27,48,34,0.06), rgba(201,168,76,0.12));
   padding: 10px 32px;
   border-radius: 30px;
-  border: 1px solid rgba(27,48,34,0.12);
+  border: 1px solid rgba(201,168,76,0.25);
+  letter-spacing: 0.05em;
 }
 
 /* =============================================
@@ -810,16 +943,21 @@ footer::before {
   animation: fadeUp 0.6s ease forwards;
 }
 
-.card-plato, .card-horizontal, .bebida-item, .item-lista {
+.card-plato, .card-horizontal, .bebida-item, .item-lista, .guaguas-card {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.38s ease,
+    border-color 0.38s ease;
 }
 
 .card-plato.visible,
 .card-horizontal.visible,
 .bebida-item.visible,
-.item-lista.visible {
+.item-lista.visible,
+.guaguas-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -869,20 +1007,20 @@ footer::before {
   line-height: 1.5;
 }
 
+/* ✨ MEJORA: precio lista con acento dorado */
 .item-lista-precio {
   font-family: var(--font-display);
   font-size: 1.1rem;
-  color: var(--verde-bosque);
+  color: #753405;
   font-weight: 600;
   padding: 8px 16px;
-  background: linear-gradient(135deg, rgba(27,48,34,0.06), rgba(166,124,82,0.08));
+  background: linear-gradient(135deg, rgba(27,48,34,0.05), rgba(201,168,76,0.1));
   border-radius: 20px;
-  border: 1px solid rgba(27,48,34,0.1);
+  border: 1px solid rgba(201,168,76,0.2);
   margin-left: 16px;
   white-space: nowrap;
 }
 
-/* Estilo especial para sección sopas */
 .seccion-sopas .item-lista {
   background: rgba(253,250,245,0.06);
   border-color: rgba(255,255,255,0.08);
@@ -908,6 +1046,66 @@ footer::before {
 }
 
 /* =============================================
+   BOTÓN FLOTANTE WHATSAPP ✨
+============================================= */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  text-decoration: none;
+  box-shadow:
+    0 6px 28px rgba(37,211,102,0.45),
+    0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  animation: wa-pulso 2.8s ease-in-out 1.5s infinite;
+}
+
+.btn-whatsapp svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+
+.btn-whatsapp:hover {
+  transform: scale(1.12) translateY(-3px);
+  box-shadow:
+    0 12px 40px rgba(37,211,102,0.55),
+    0 4px 12px rgba(0,0,0,0.25);
+  animation: none; /* pausa el pulso en hover */
+}
+
+/* Anillo de pulso/respiración */
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37,211,102,0.5);
+  animation: wa-ring 2.8s ease-in-out 1.5s infinite;
+}
+
+@keyframes wa-pulso {
+  0%,  100% { transform: scale(1); box-shadow: 0 6px 28px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.2); }
+  50%        { transform: scale(1.06); box-shadow: 0 10px 36px rgba(37,211,102,0.6), 0 2px 8px rgba(0,0,0,0.2); }
+}
+
+@keyframes wa-ring {
+  0%   { transform: scale(1);    opacity: 0.7; }
+  60%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* =============================================
    RESPONSIVE
 ============================================= */
 @media (max-width: 768px) {
@@ -930,8 +1128,22 @@ footer::before {
     margin-left: 0;
     align-self: flex-start;
   }
+
+  .btn-whatsapp {
+    bottom: 20px;
+    right: 16px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .btn-whatsapp svg {
+    width: 26px;
+    height: 26px;
+  }
 }
 
 @media (max-width: 480px) {
   .bebidas-grid { grid-template-columns: 1fr; }
+  .footer-redes { gap: 10px; }
+  .footer-red-link { font-size: 0.65rem; padding: 9px 16px; }
 }

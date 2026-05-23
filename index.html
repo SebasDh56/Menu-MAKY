@@ -29,7 +29,6 @@
       </div>
 
       <div class="logo-wrapper">
-        <!-- images/logo_maky.png — Logo oficial de Maky: tipografía cursiva verde con montañas y cebollín -->
         <img src="images/logo_maky.jpg" alt="Logo Maky Restaurante" class="logo-img" />
         <div id="logo-texto-fallback" class="logo-texto" style="display:none;">
           M<span>a</span>k<span>y</span>
@@ -58,14 +57,17 @@
 
   <!-- =========================================================
        NAVEGACIÓN STICKY
+       ✨ CAMBIO: se añade nav-scroll-wrapper para indicador de scroll
   ========================================================= -->
   <nav class="nav-sticky" aria-label="Secciones del menú">
-    <div class="nav-inner">
-      <a href="#empezar" class="nav-item">Para Empezar</a>
-      <a href="#sopas" class="nav-item">Sopas</a>
-      <a href="#granja" class="nav-item">De la Granja</a>
-      <a href="#guaguas" class="nav-item">Guaguas</a>
-      <a href="#bebidas" class="nav-item">Bebidas</a>
+    <div class="nav-scroll-wrapper" id="navScrollWrapper">
+      <div class="nav-inner">
+        <a href="#empezar" class="nav-item">Para Empezar</a>
+        <a href="#sopas" class="nav-item">Sopas</a>
+        <a href="#granja" class="nav-item">De la Granja</a>
+        <a href="#guaguas" class="nav-item">Guaguas</a>
+        <a href="#bebidas" class="nav-item">Bebidas</a>
+      </div>
     </div>
   </nav>
 
@@ -82,23 +84,19 @@
 
       <div class="grid-platos dos-col">
 
-        <!-- CARD: Pan de ajo -->
-          <article class="card-horizontal card-plato" aria-label="Pan de ajo">
-            <div class="card-imagen">
-              <!-- images/pan_ajo.jpg — Pan artesanal caliente con mantequilla de ajo y hierbas -->
-              <img src="images/pan_ajo.jpg" alt="Pan de ajo" />
-            </div>
-            <div class="card-cuerpo">
-              <h3 class="plato-nombre">Pan de ajo</h3>
-              <p class="plato-descripcion">Pan artesanal caliente con mantequilla de ajo y hierbas aromáticas.</p>
-              <span class="precio-inline">$2.00</span>
-            </div>
-          </article>
+        <article class="card-horizontal card-plato" aria-label="Pan de ajo">
+          <div class="card-imagen">
+            <img src="images/pan_ajo.jpg" alt="Pan de ajo" />
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Pan de ajo</h3>
+            <p class="plato-descripcion">Pan artesanal caliente con mantequilla de ajo y hierbas aromáticas.</p>
+            <span class="precio-inline">$2.00</span>
+          </div>
+        </article>
 
-          <!-- CARD: Maduro con queso gratinado -->
         <article class="card-horizontal card-plato" aria-label="Maduro con queso gratinado">
           <div class="card-imagen">
-            <!-- images/maduro_queso.jpg — Maduro horneado con queso gratinado -->
             <img src="images/maduro_queso.jpg" alt="Maduro con queso gratinado" />
           </div>
           <div class="card-cuerpo">
@@ -108,23 +106,19 @@
           </div>
         </article>
 
-        <!-- CARD: Ensalada tradicional -->
-<article class="card-horizontal card-plato" aria-label="Ensalada tradicional">
-  <div class="card-imagen">
-    <!-- images/ensalada_tradicional.jpg — Ensalada fresca con tomate, cebolla, pimiento, lechuga y albahaca -->
-    <img src="images/ensalada_tradicional.jpg" alt="Ensalada tradicional" />
-  </div>
-  <div class="card-cuerpo">
-    <h3 class="plato-nombre">Ensalada tradicional</h3>
-    <p class="plato-descripcion">Tomate, cebolla, pimiento, lechuga y albahaca.</p>
-    <span class="precio-inline">$3.00</span>
-  </div>
-</article>
+        <article class="card-horizontal card-plato" aria-label="Ensalada tradicional">
+          <div class="card-imagen">
+            <img src="images/ensalada_tradicional.jpg" alt="Ensalada tradicional" />
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Ensalada tradicional</h3>
+            <p class="plato-descripcion">Tomate, cebolla, pimiento, lechuga y albahaca.</p>
+            <span class="precio-inline">$3.00</span>
+          </div>
+        </article>
 
-        <!-- CARD: Habas con queso -->
         <article class="card-horizontal card-plato" aria-label="Habas con queso">
           <div class="card-imagen">
-            <!-- images/habas_queso.jpg — Habas tiernas verdes del páramo servidas con cubitos de queso blanco de la casa en un plato de barro -->
             <img src="images/habas_queso.jpg" alt="Habas con queso" />
           </div>
           <div class="card-cuerpo">
@@ -134,10 +128,8 @@
           </div>
         </article>
 
-        <!-- CARD: Mote con chicharrón -->
         <article class="card-horizontal card-plato" aria-label="Mote con chicharrón">
           <div class="card-imagen">
-            <!-- images/mote_chicharron.jpg — Tazón de maíz mote cocido acompañado de chicharrón crujiente de cerdo, presentación rústica -->
             <img src="images/mote_chicharron.jpg" alt="Mote con chicharrón" />
           </div>
           <div class="card-cuerpo">
@@ -157,17 +149,15 @@
   <section class="seccion seccion-sopas" id="sopas">
     <div class="contenedor">
       <div class="seccion-header">
-        <div class="seccion-etiqueta">Caldos & Locros</div>
+        <div class="seccion-etiqueta">Caldos &amp; Locros</div>
         <h2 class="seccion-titulo">¡En la casa hay sopa!</h2>
         <div class="seccion-divider"></div>
       </div>
 
       <div class="grid-platos">
 
-        <!-- CARD: Caldo de gallina -->
         <article class="card-plato" aria-label="Caldo de gallina">
           <div class="card-imagen">
-            <!-- images/caldo_gallina.jpg — Tazón de caldo claro de gallina de campo con presa de pollo, cebolla verde y cilantro, cocinado a leña -->
             <img src="images/caldo_gallina.jpg" alt="Caldo de gallina" />
             <span class="precio-badge">$5.50</span>
           </div>
@@ -177,10 +167,8 @@
           </div>
         </article>
 
-        <!-- CARD: Yahuarlocro -->
         <article class="card-plato" aria-label="Yahuarlocro">
           <div class="card-imagen">
-            <!-- images/yahuarlocro.jpg — Olla de barro con yahuarlocro cremoso color naranja, decorado con aguacate, tomate y sangrecita de borrego encima -->
             <img src="images/yahuarlocro.jpg" alt="Yahuarlocro" />
             <span class="precio-badge">$5.50</span>
           </div>
@@ -190,10 +178,8 @@
           </div>
         </article>
 
-        <!-- CARD: Locro de queso -->
         <article class="card-plato" aria-label="Locro de queso">
           <div class="card-imagen">
-            <!-- images/locro_queso.jpg — Tazón de locro cremoso amarillo de papa con cubitos de queso blanco flotando y hoja de cilantro fresco, acompañado de aguacate al lado -->
             <img src="images/locro_queso.jpg" alt="Locro de queso" />
             <span class="precio-badge">$3.50</span>
           </div>
@@ -203,18 +189,16 @@
           </div>
         </article>
 
-        <!-- CARD: Sopa del día -->
-          <article class="card-plato" aria-label="Sopa del día">
-            <div class="card-imagen">
-              <!-- images/sopa_dia.jpg — Sopa casera del día -->
-              <img src="images/sopa_dia.jpg" alt="Sopa del día" />
-              <span class="precio-badge">$1.75</span>
-            </div>
-            <div class="card-cuerpo">
-              <h3 class="plato-nombre">Sopa del día</h3>
-              <p class="plato-descripcion">Preparación casera elaborada diariamente con ingredientes frescos de temporada.</p>
-            </div>
-          </article>
+        <article class="card-plato" aria-label="Sopa del día">
+          <div class="card-imagen">
+            <img src="images/sopa_dia.jpg" alt="Sopa del día" />
+            <span class="precio-badge">$1.75</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Sopa del día</h3>
+            <p class="plato-descripcion">Preparación casera elaborada diariamente con ingredientes frescos de temporada.</p>
+          </div>
+        </article>
 
       </div>
     </div>
@@ -240,24 +224,64 @@
 
       <div class="grid-platos">
 
-        <!-- CARD: Borrego a la piedra — PLATO ESTRELLA -->
+        <article class="card-plato" aria-label="Lomo a la piedra">
+          <div class="card-imagen">
+            <img src="images/lomo_piedra.jpg" alt="Lomo a la piedra" />
+            <span class="precio-badge">$11.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Lomo Andino</h3>
+            <p class="plato-descripcion">250g de lomo fino acompañado de papitas al vapor y ensalada de la casa.</p>
+          </div>
+        </article>
+
         <article class="card-plato" aria-label="Borrego a la piedra - Plato Estrella">
           <div class="card-imagen">
-            <!-- images/borrego_piedra.jpg — Chuleta/costilla de borrego asada sobre piedra volcánica negra, con papitas pequeñas "Cecilia" doradas al lado y ensalada fresca, salsa de la casa en recipiente pequeño -->
             <img src="images/borrego_piedra.jpg" alt="Borrego a la piedra" />
             <span class="precio-badge">$8.00</span>
             <span class="badge-especial">⭐ Plato Estrella</span>
           </div>
           <div class="card-cuerpo">
-            <h3 class="plato-nombre">Borrego Andino</h3>
+            <h3 class="plato-nombre">Borrego a la piedra</h3>
             <p class="plato-descripcion">Corte especial de cordero, papas al vapor, ensalada de la casa acompañada de salsa Maky.</p>
           </div>
         </article>
 
-        <!-- CARD: Cuy -->
+        <article class="card-plato" aria-label="Seco de chivo">
+          <div class="card-imagen">
+            <img src="images/seco_chivo.jpg" alt="Seco de chivo" />
+            <span class="precio-badge">$8.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Seco de chivo</h3>
+            <p class="plato-descripcion">Deliciosa y suave carne de cordero acompañada de arroz amarillo y ensalada de la casa.</p>
+          </div>
+        </article>
+
+        <article class="card-plato" aria-label="T-bone andino">
+          <div class="card-imagen">
+            <img src="images/tbone_andino.jpg" alt="T-bone andino" />
+            <span class="precio-badge">$11.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">T-bone andino</h3>
+            <p class="plato-descripcion">Acompañado de papitas al vapor y ensalada de la casa.</p>
+          </div>
+        </article>
+
+        <article class="card-plato" aria-label="Ribeye andino">
+          <div class="card-imagen">
+            <img src="images/ribeye_andino.jpg" alt="Ribeye andino" />
+            <span class="precio-badge">$12.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Ribeye andino</h3>
+            <p class="plato-descripcion">Acompañado de papitas al vapor y ensalada de la casa.</p>
+          </div>
+        </article>
+
         <article class="card-plato" aria-label="Cuy">
           <div class="card-imagen">
-            <!-- images/cuy.jpg — Cuy entero horneado a la leña con color dorado y piel crocante, servido sobre cama de papas bañadas en salsa de maní con lechuga y aguacate -->
             <img src="images/cuy.jpg" alt="Cuy al horno de leña" />
             <span class="precio-badge">$20.00</span>
             <span class="badge-especial">Bajo reservación</span>
@@ -274,103 +298,21 @@
           </div>
         </article>
 
-        <!-- CARD: Carne montada -->
-        <article class="card-plato" aria-label="Carne montada">
+        <article class="card-plato" aria-label="Chuleta de cerdo">
           <div class="card-imagen">
-            <!-- images/carne_montada.jpg — Filete de res a la plancha sobre arroz blanco con papas fritas, dos huevos fritos encima y ensalada de lechuga y tomate al lado -->
-            <img src="images/carne_montada.jpg" alt="Carne montada" />
+            <img src="images/Chuleta_cerdo.jpg" alt="Chuleta de cerdo" />
             <span class="precio-badge">$5.50</span>
           </div>
           <div class="card-cuerpo">
-            <h3 class="plato-nombre">Carne montada</h3>
-            <p class="plato-descripcion">Filete de res, arroz, papas fritas, huevos fritos y ensalada.</p>
-          </div>
-        </article>
-
-        <!-- CARD: Seco de chivo -->
-        <article class="card-plato" aria-label="Seco de chivo">
-          <div class="card-imagen">
-            <!-- images/seco_chivo.jpg -->
-            <img src="images/seco_chivo.jpg" alt="Seco de chivo" />
-            <span class="precio-badge">$8.00</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Seco de chivo</h3>
-            <p class="plato-descripcion">Deliciosa y suave carne de cordero acompañada de arroz amarillo y ensalada de la casa.</p>
-          </div>
-        </article>
-
-        <!-- CARD: Costillas andinas BBQ -->
-        <article class="card-plato" aria-label="Costillas andinas BBQ">
-          <div class="card-imagen">
-            <!-- images/costillas_bbq.jpg -->
-            <img src="images/costillas_bbq.jpg" alt="Costillas andinas BBQ" />
-            <span class="precio-badge">$10.99</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Costillas andinas bañadas en salsa BBQ</h3>
-            <p class="plato-descripcion">Costillas suaves bañadas en salsa BBQ acompañadas de papitas al vapor y ensalada fresca.</p>
-          </div>
-        </article>
-
-        <!-- CARD: T-bone andino -->
-        <article class="card-plato" aria-label="T-bone andino">
-          <div class="card-imagen">
-            <!-- images/tbone_andino.jpg -->
-            <img src="images/tbone_andino.jpg" alt="T-bone andino" />
-            <span class="precio-badge">$11.00</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">T-bone andino</h3>
-            <p class="plato-descripcion">Acompañado de papitas al vapor y ensalada de la casa.</p>
-          </div>
-        </article>
-
-        <!-- CARD: Ribeye andino -->
-        <article class="card-plato" aria-label="Ribeye andino">
-          <div class="card-imagen">
-            <!-- images/ribeye_andino.jpg -->
-            <img src="images/ribeye_andino.jpg" alt="Ribeye andino" />
-            <span class="precio-badge">$12.00</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Ribeye andino</h3>
-            <p class="plato-descripcion">Acompañado de papitas al vapor y ensalada de la casa.</p>
-          </div>
-        </article>
-
-        <!-- CARD: Lomo andino — NUEVO -->
-        <article class="card-plato" aria-label="Lomo andino">
-          <div class="card-imagen">
-            <!-- images/lomo_andino.jpg -->
-            <img src="images/lomo_andino.jpg" alt="Lomo andino" />
-            <span class="precio-badge">$11.00</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Lomo andino</h3>
-            <p class="plato-descripcion">250g de lomo fino acompañado de papitas al vapor y ensalada de la casa.</p>
-          </div>
-        </article>
-
-        <!-- CARD: Chuleta de cerdo a la piedra -->
-        <article class="card-plato" aria-label="Chuleta de cerdo a la piedra">
-          <div class="card-imagen">
-            <!-- images/chuleta_horno.jpg — Chuleta de cerdo a la piedra, papitas al vapor, arroz y ensalada fresca -->
-            <img src="images/chuleta_horno.jpg" alt="Chuleta de cerdo a la piedra" />
-            <span class="precio-badge">$6.50</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Chuleta de cerdo a la piedra</h3>
+            <h3 class="plato-nombre">Chuleta de cerdo</h3>
             <p class="plato-descripcion">300g de chuleta de cerdo acompañados de papitas al vapor, arroz y ensalada de la casa.</p>
           </div>
         </article>
 
-        <!-- CARD: Filete de pollo a la piedra -->
         <article class="card-plato" aria-label="Filete de pollo a la piedra">
           <div class="card-imagen">
-            <!-- images/filete_pollo.jpg -->
             <img src="images/filete_pollo.jpg" alt="Filete de pollo a la piedra" />
-            <span class="precio-badge">$5.50</span>
+            <span class="precio-badge">$5.00</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Filete de pollo a la piedra</h3>
@@ -381,7 +323,6 @@
       </div>
     </div>
   </section>
-
 
   <!-- =========================================================
        PARA LOS GUAGUAS
@@ -396,12 +337,11 @@
 
       <article class="guaguas-card card-plato">
         <div class="card-imagen">
-          <!-- images/alitas_guachaleña.jpg — Alitas de pollo horneadas color caramelo brillante bañadas en salsa de uvilla y miel, acompañadas de papas fritas doradas en un plato rústico -->
           <img src="images/alitas_guachalena.jpg" alt="Alitas en salsa Guachaleña" />
         </div>
         <div class="card-cuerpo">
           <h3 class="plato-nombre">Alitas en salsa Guachaleña</h3>
-          <p class="plato-descripcion">Alitas al horno en salsa de uvilla y miel de chawaurmiske acompañado con papas fritas.</p>
+          <p class="plato-descripcion">Alitas al horno en salsa de uvilla y miel de chawar miske acompañado con papas fritas.</p>
           <span class="precio-grande">$5.00</span>
         </div>
       </article>
@@ -415,30 +355,32 @@
   <section class="seccion seccion-bebidas" id="bebidas">
     <div class="contenedor">
       <div class="seccion-header">
-        <div class="seccion-etiqueta">Líquidos & Refrescantes</div>
+        <div class="seccion-etiqueta">Líquidos &amp; Refrescantes</div>
         <h2 class="seccion-titulo">¡Y para pasar!</h2>
         <div class="seccion-divider"></div>
       </div>
 
       <div class="bebidas-imagen-deco">
-        <!-- images/chicha_jora.jpg — Jarra de barro o vaso con chicha de jora artesanal de color ámbar con espuma, sobre mesa de madera -->
         <img src="images/chicha_jora.jpeg" alt="Chicha de Jora artesanal" />
       </div>
 
       <div class="bebidas-grid">
         <div class="bebida-item"><span class="bebida-nombre">Chicha de Jora</span><span class="bebida-precio">$4.50</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Limonada normal</span><span class="bebida-precio">$3.50</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Limonada de fresa</span><span class="bebida-precio">$4.00</span></div>
+        <div class="bebida-item"><span class="bebida-nombre">Limonada normal</span><span class="bebida-precio">$4.00</span></div>
+        <div class="bebida-item"><span class="bebida-nombre">Limonada de frutos rojos</span><span class="bebida-precio">$4.50</span></div>
+        <div class="bebida-item"><span class="bebida-nombre">Limonada de la casa</span><span class="bebida-precio">$4.50</span></div>
+        <div class="bebida-item"><span class="bebida-nombre">Limonada de fresa</span><span class="bebida-precio">$4.50</span></div>
         <div class="bebida-item"><span class="bebida-nombre">Gaseosa 300 cc</span><span class="bebida-precio">$1.00</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Cerveza Pilsener 750 cc</span><span class="bebida-precio">$2.00</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Cerveza Club 750 cc</span><span class="bebida-precio">$2.50</span></div>
+        <div class="bebida-item"><span class="bebida-nombre">Cerveza Pilsener 750 cc</span><span class="bebida-precio">$2.50</span></div>
+        <div class="bebida-item"><span class="bebida-nombre">Cerveza Club 750 cc</span><span class="bebida-precio">$3.00</span></div>
+        <div class="bebida-item"><span class="bebida-nombre">Guittig</span><span class="bebida-precio">$1.00</span></div>
       </div>
 
     </div>
   </section>
 
   <!-- =========================================================
-       FOOTER
+       FOOTER — ✨ con redes sociales reales e interactivas
   ========================================================= -->
   <footer>
     <div class="footer-logo">Maky</div>
@@ -446,7 +388,55 @@
 
     <div class="footer-hashtag">#Makyrestaurante</div>
 
-    <p class="footer-redes">Síguenos en Facebook &amp; Instagram</p>
+    <!-- ✨ REEMPLAZA el <p class="footer-redes"> estático por esto: -->
+    <p class="footer-redes-titulo">Síguenos y encuéntranos</p>
+    <div class="footer-redes">
+
+      <a href="https://www.facebook.com/MakyRestaurante"
+         target="_blank" rel="noopener noreferrer"
+         class="footer-red-link fb"
+         aria-label="Facebook de Maky Restaurante">
+        <!-- Ícono Facebook SVG ligero -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+        </svg>
+        Facebook
+      </a>
+
+      <a href="https://www.tiktok.com/@maky.restaurant?_r=1&_t=ZS-96abN9vFfwj"
+         target="_blank" rel="noopener noreferrer"
+         class="footer-red-link tt"
+         aria-label="TikTok de Maky Restaurante">
+        <!-- Ícono TikTok SVG ligero -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+        </svg>
+        TikTok
+      </a>
+
+      <a href="https://wa.me/message/36RUZI6AT5GEN1"
+         target="_blank" rel="noopener noreferrer"
+         class="footer-red-link wa"
+         aria-label="WhatsApp de Maky Restaurante">
+        <!-- Ícono WhatsApp SVG ligero -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        WhatsApp
+      </a>
+
+      <a href="https://maps.app.goo.gl/bGsWgJE2miH6yZyw6"
+         target="_blank" rel="noopener noreferrer"
+         class="footer-red-link gm"
+         aria-label="Ubicación en Google Maps">
+        <!-- Ícono Mapa SVG ligero -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        Cómo llegar
+      </a>
+
+    </div>
 
     <div class="tarjetas-titulo">Aceptamos todas las tarjetas de crédito</div>
     <div class="tarjetas-lista">
@@ -456,8 +446,22 @@
       <div class="tarjeta-badge"><div class="dot" style="background:#2E77BC"></div> American Express</div>
     </div>
 
-    <p class="footer-copy">© 2025 Maky Restaurante — Todos los derechos reservados</p>
+    <p class="footer-copy">© 2025 Maky Restaurante — Todos los derechos reservados<br>
+      <small style="opacity:0.6;">Buena Esperanza de Guachala km 3.6 vía Cangahua · 0968865293</small>
+    </p>
   </footer>
+
+  <!-- =====================================================
+       BOTÓN FLOTANTE WHATSAPP ✨
+  ===================================================== -->
+  <a href="https://wa.me/message/36RUZI6AT5GEN1"
+     target="_blank" rel="noopener noreferrer"
+     class="btn-whatsapp"
+     aria-label="Contáctanos por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
 
   <script src="script.js" defer></script>
 
