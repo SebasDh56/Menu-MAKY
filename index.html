@@ -3,24 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Maky Restaurante - Sabor tradicional del páramo ecuatoriano. Disfruta nuestra auténtica cocina andina con platos como caldo de gallina, yahuarlocro, seco de chivo y más." />
-  <title>Maky — Sabor Tradicional del Páramo</title>
+
+  <!-- ═══ SEO & Open Graph ════════════════════════════════════════════════ -->
+  <title>Maky — Sabor Tradicional del Páramo | Guachala, Ecuador</title>
+  <meta name="description" content="Maky Restaurante — Cocina andina auténtica en Guachala, Ecuador. Caldo de gallina, yahuarlocro, borrego a la piedra, cuy y más. Km 3.6 vía Cangahua." />
+  <meta name="keywords" content="restaurante andino, comida ecuatoriana, Guachala, Cangahua, yahuarlocro, borrego, cuy, páramo" />
+  <link rel="canonical" href="https://makyrestaurante.com/" />
+
+  <!-- Open Graph (WhatsApp, Facebook, Instagram) -->
+  <meta property="og:type"        content="restaurant" />
+  <meta property="og:title"       content="Maky — Sabor Tradicional del Páramo" />
+  <meta property="og:description" content="Cocina andina auténtica. Borrego a la piedra, caldo de gallina criolla, yahuarlocro y más. Visítanos en Guachala, km 3.6 vía Cangahua." />
+  <meta property="og:image"       content="images/og_maky.jpg" />
+  <meta property="og:url"         content="https://makyrestaurante.com/" />
+  <meta property="og:locale"      content="es_EC" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Maky — Sabor Tradicional del Páramo" />
+  <meta name="twitter:description" content="Cocina andina auténtica en Guachala, Ecuador." />
+  <meta name="twitter:image"       content="images/og_maky.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon"       href="images/favicon.ico" />
+  <link rel="apple-touch-icon"     href="images/apple-touch-icon.png" />
+
+  <!-- ═══ Fuentes — preload de los dos pesos críticos ════════════════════ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;1,400&family=Cinzel:wght@400;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;1,400&family=Cinzel:wght@400&display=swap" rel="stylesheet" />
+  </noscript>
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Schema.org para Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Maky Restaurante",
+    "description": "Cocina andina tradicional del páramo ecuatoriano",
+    "url": "https://makyrestaurante.com",
+    "telephone": "+593968865293",
+    "servesCuisine": "Ecuadorian",
+    "priceRange": "$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Buena Esperanza de Guachala km 3.6 vía Cangahua",
+      "addressLocality": "Guachala",
+      "addressCountry": "EC"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "0.0789",
+      "longitude": "-78.1345"
+    },
+    "sameAs": [
+      "https://www.facebook.com/MakyRestaurante",
+      "https://www.tiktok.com/@maky.restaurant"
+    ]
+  }
+  </script>
 </head>
 <body>
 
-  <a href="#inicio" class="skip-link" style="position:absolute; top:-40px; left:0; background:var(--verde-bosque); color:var(--blanco); padding:8px 16px; z-index:1000; transition:top 0.3s;">Saltar al contenido principal</a>
+  <a href="#inicio" class="skip-link">Saltar al contenido principal</a>
 
-  <!-- =========================================================
+  <!-- ═══════════════════════════════════════════════════════════════════════
        HERO
-  ========================================================= -->
-  <section class="hero" id="inicio">
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="inicio" aria-label="Bienvenida Maky Restaurante">
     <div class="hero-content">
-      <div class="ornamento">
+
+      <div class="ornamento" aria-hidden="true">
         <div class="ornamento-linea"></div>
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 2L9 9H2l5.5 4-2 7L12 16l6.5 4-2-7L22 9h-7z"/>
@@ -29,15 +90,16 @@
       </div>
 
       <div class="logo-wrapper">
-        <img src="images/logo_maky.jpg" alt="Logo Maky Restaurante" class="logo-img" />
-        <div id="logo-texto-fallback" class="logo-texto" style="display:none;">
+        <img src="images/logo_maky.jpg" alt="Maky Restaurante — logo oficial" class="logo-img"
+             width="180" height="180" />
+        <div id="logo-texto-fallback" class="logo-texto" style="display:none;" aria-hidden="true">
           M<span>a</span>k<span>y</span>
         </div>
       </div>
 
       <p class="slogan">— Sabor tradicional del páramo —</p>
 
-      <div class="manifiesto">
+      <div class="manifiesto" role="note">
         <p class="manifiesto-titulo">Nuestras Raíces Andinas</p>
         <p>
           Rindiendo tributo al campo, a las manos campesinas y al producto local,
@@ -45,9 +107,29 @@
           en una variedad de texturas y sabores.
         </p>
       </div>
+
+      <!-- ✦ CTA PRINCIPAL — dirección clara al menú -->
+      <div class="hero-cta-grupo">
+        <a href="#empezar" class="hero-cta-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+          Ver el menú
+        </a>
+        <a href="https://wa.me/message/36RUZI6AT5GEN1" target="_blank" rel="noopener"
+           class="hero-cta-secondary" aria-label="Hacer una reservación por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Reservar mesa
+        </a>
+      </div>
+
     </div>
 
-    <div class="scroll-cta">
+    <!-- Indicador scroll sutil -->
+    <div class="scroll-cta" aria-hidden="true">
       <span>Descubre el menú</span>
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -55,87 +137,91 @@
     </div>
   </section>
 
-  <!-- =========================================================
+  <!-- ═══════════════════════════════════════════════════════════════════════
        NAVEGACIÓN STICKY
-       ✨ CAMBIO: se añade nav-scroll-wrapper para indicador de scroll
-  ========================================================= -->
-  <nav class="nav-sticky" aria-label="Secciones del menú">
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <nav class="nav-sticky" role="navigation" aria-label="Categorías del menú">
     <div class="nav-scroll-wrapper" id="navScrollWrapper">
       <div class="nav-inner">
-        <a href="#empezar" class="nav-item">Para Empezar</a>
-        <a href="#sopas" class="nav-item">Sopas</a>
-        <a href="#granja" class="nav-item">De la Granja</a>
-        <a href="#guaguas" class="nav-item">Guaguas</a>
-        <a href="#bebidas" class="nav-item">Bebidas</a>
+        <a href="#empezar" class="nav-item" aria-label="Ir a Entradas">Para Empezar</a>
+        <a href="#sopas"   class="nav-item" aria-label="Ir a Sopas y Caldos">Sopas</a>
+        <a href="#granja"  class="nav-item" aria-label="Ir a Platos Principales">De la Granja</a>
+        <a href="#guaguas" class="nav-item" aria-label="Ir a menú infantil">Guaguas</a>
+        <a href="#bebidas" class="nav-item" aria-label="Ir a Bebidas">Bebidas</a>
       </div>
     </div>
   </nav>
 
-  <!-- =========================================================
+  <!-- ═══════════════════════════════════════════════════════════════════════
        PARA EMPEZAR
-  ========================================================= -->
-  <section class="seccion" id="empezar">
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="seccion" id="empezar" aria-labelledby="titulo-empezar">
     <div class="contenedor">
       <div class="seccion-header">
-        <div class="seccion-etiqueta">Entradas</div>
-        <h2 class="seccion-titulo">¡Para empezar!</h2>
-        <div class="seccion-divider"></div>
+        <div class="seccion-etiqueta" aria-hidden="true">Entradas</div>
+        <h2 class="seccion-titulo" id="titulo-empezar">¡Para empezar!</h2>
+        <div class="seccion-divider" aria-hidden="true"></div>
       </div>
 
       <div class="grid-platos dos-col">
 
-        <article class="card-horizontal card-plato" aria-label="Pan de ajo">
+        <article class="card-horizontal card-plato" aria-label="Pan de ajo — $2.00">
           <div class="card-imagen">
-            <img src="images/pan_ajo.jpg" alt="Pan de ajo" />
+            <img src="images/pan_ajo.jpg" alt="Pan artesanal de ajo con mantequilla de hierbas"
+                 loading="lazy" width="160" height="160" />
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Pan de ajo</h3>
             <p class="plato-descripcion">Pan artesanal caliente con mantequilla de ajo y hierbas aromáticas.</p>
-            <span class="precio-inline">$2.00</span>
+            <span class="precio-inline" aria-label="Precio: $2.00">$2.00</span>
           </div>
         </article>
 
-        <article class="card-horizontal card-plato" aria-label="Maduro con queso gratinado">
+        <article class="card-horizontal card-plato" aria-label="Maduro con queso gratinado — $2.50">
           <div class="card-imagen">
-            <img src="images/maduro_queso.jpg" alt="Maduro con queso gratinado" />
+            <img src="images/maduro_queso.jpg" alt="Plátano maduro horneado con queso gratinado"
+                 loading="lazy" width="160" height="160" />
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Maduro con queso gratinado</h3>
             <p class="plato-descripcion">Plátano maduro al horno de leña acompañado con queso de la casa gratinado.</p>
-            <span class="precio-inline">$2.50</span>
+            <span class="precio-inline" aria-label="Precio: $2.50">$2.50</span>
           </div>
         </article>
 
-        <article class="card-horizontal card-plato" aria-label="Ensalada tradicional">
+        <article class="card-horizontal card-plato" aria-label="Ensalada tradicional — $3.00">
           <div class="card-imagen">
-            <img src="images/ensalada_tradicional.jpg" alt="Ensalada tradicional" />
+            <img src="images/ensalada_tradicional.jpg" alt="Ensalada fresca con tomate, cebolla y albahaca"
+                 loading="lazy" width="160" height="160" />
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Ensalada tradicional</h3>
             <p class="plato-descripcion">Tomate, cebolla, pimiento, lechuga y albahaca.</p>
-            <span class="precio-inline">$3.00</span>
+            <span class="precio-inline" aria-label="Precio: $3.00">$3.00</span>
           </div>
         </article>
 
-        <article class="card-horizontal card-plato" aria-label="Habas con queso">
+        <article class="card-horizontal card-plato" aria-label="Habas con queso — $3.00">
           <div class="card-imagen">
-            <img src="images/habas_queso.jpg" alt="Habas con queso" />
+            <img src="images/habas_queso.jpg" alt="Habas tiernas del páramo con queso blanco de la casa"
+                 loading="lazy" width="160" height="160" />
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Habas con queso</h3>
             <p class="plato-descripcion">Habas tiernas del páramo con cubitos de queso de la casa.</p>
-            <span class="precio-inline">$3.00</span>
+            <span class="precio-inline" aria-label="Precio: $3.00">$3.00</span>
           </div>
         </article>
 
-        <article class="card-horizontal card-plato" aria-label="Mote con chicharrón">
+        <article class="card-horizontal card-plato" aria-label="Mote con chicharrón — $4.50">
           <div class="card-imagen">
-            <img src="images/mote_chicharron.jpg" alt="Mote con chicharrón" />
+            <img src="images/mote_chicharron.jpg" alt="Mote cocido con chicharrón crujiente y hierbas"
+                 loading="lazy" width="160" height="160" />
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Mote con chicharrón</h3>
             <p class="plato-descripcion">Delicioso chicharrón con mote acompañado de hierbitas de la casa.</p>
-            <span class="precio-inline">$4.50</span>
+            <span class="precio-inline" aria-label="Precio: $4.50">$4.50</span>
           </div>
         </article>
 
@@ -143,60 +229,72 @@
     </div>
   </section>
 
-  <!-- =========================================================
+  <!-- ═══════════════════════════════════════════════════════════════════════
        SOPAS
-  ========================================================= -->
-  <section class="seccion seccion-sopas" id="sopas">
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="seccion seccion-sopas" id="sopas" aria-labelledby="titulo-sopas">
     <div class="contenedor">
       <div class="seccion-header">
-        <div class="seccion-etiqueta">Caldos &amp; Locros</div>
-        <h2 class="seccion-titulo">¡En la casa hay sopa!</h2>
-        <div class="seccion-divider"></div>
+        <div class="seccion-etiqueta" aria-hidden="true">Caldos &amp; Locros</div>
+        <h2 class="seccion-titulo" id="titulo-sopas">¡En la casa hay sopa!</h2>
+        <div class="seccion-divider" aria-hidden="true"></div>
       </div>
 
       <div class="grid-platos">
 
-        <article class="card-plato" aria-label="Caldo de gallina">
+        <article class="card-plato" aria-label="Caldo de gallina criolla — $5.50">
           <div class="card-imagen">
-            <img src="images/caldo_gallina.jpg" alt="Caldo de gallina" />
-            <span class="precio-badge">$5.50</span>
+            <img src="images/caldo_gallina.jpg"
+                 alt="Tazón de caldo de gallina criolla cocida a leña con cilantro y cebolla verde"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$5.50</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Caldo de gallina criolla</h3>
             <p class="plato-descripcion">Caldo de gallina de campo cocida a fuego lento en estufa de leña.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $5.50">$5.50</span>
           </div>
         </article>
 
-        <article class="card-plato" aria-label="Yahuarlocro">
+        <article class="card-plato" aria-label="Yahuarlocro — $5.50">
           <div class="card-imagen">
-            <img src="images/yahuarlocro.jpg" alt="Yahuarlocro" />
-            <span class="precio-badge">$5.50</span>
+            <img src="images/yahuarlocro.jpg"
+                 alt="Yahuarlocro cremoso con aguacate, tomate y sangrecita de borrego"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$5.50</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Yahuarlocro</h3>
             <p class="plato-descripcion">Cremoso locro acompañado de vísceras selectas de borrego, tomate y aguacate.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $5.50">$5.50</span>
           </div>
         </article>
 
-        <article class="card-plato" aria-label="Locro de queso">
+        <article class="card-plato" aria-label="Locro de queso — $3.50">
           <div class="card-imagen">
-            <img src="images/locro_queso.jpg" alt="Locro de queso" />
-            <span class="precio-badge">$3.50</span>
+            <img src="images/locro_queso.jpg"
+                 alt="Locro cremoso de papa con queso blanco y aguacate"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$3.50</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Locro de queso</h3>
             <p class="plato-descripcion">Cremoso locro de papa acompañado de queso y aguacate.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $3.50">$3.50</span>
           </div>
         </article>
 
-        <article class="card-plato" aria-label="Sopa del día">
+        <article class="card-plato" aria-label="Sopa del día — $1.75">
           <div class="card-imagen">
-            <img src="images/sopa_dia.jpg" alt="Sopa del día" />
-            <span class="precio-badge">$1.75</span>
+            <img src="images/sopa_dia.jpg"
+                 alt="Sopa casera del día con ingredientes frescos de temporada"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$1.75</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Sopa del día</h3>
             <p class="plato-descripcion">Preparación casera elaborada diariamente con ingredientes frescos de temporada.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $1.75">$1.75</span>
           </div>
         </article>
 
@@ -204,119 +302,152 @@
     </div>
   </section>
 
-  <!-- =========================================================
-       SEPARADOR
-  ========================================================= -->
-  <div class="separador-paramo">
+  <!-- Separador -->
+  <div class="separador-paramo" aria-hidden="true">
     <p class="separador-texto">"Del páramo a tu mesa, con amor artesanal"</p>
   </div>
 
-  <!-- =========================================================
+  <!-- ═══════════════════════════════════════════════════════════════════════
        LO MEJOR DE LA GRANJA
-  ========================================================= -->
-  <section class="seccion" id="granja">
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="seccion" id="granja" aria-labelledby="titulo-granja">
     <div class="contenedor">
       <div class="seccion-header">
-        <div class="seccion-etiqueta">Platos Principales</div>
-        <h2 class="seccion-titulo">¡Lo mejor de la granja!</h2>
-        <div class="seccion-divider"></div>
+        <div class="seccion-etiqueta" aria-hidden="true">Platos Principales</div>
+        <h2 class="seccion-titulo" id="titulo-granja">¡Lo mejor de la granja!</h2>
+        <div class="seccion-divider" aria-hidden="true"></div>
       </div>
 
       <div class="grid-platos">
 
-        <article class="card-plato" aria-label="Lomo a la piedra">
-          <div class="card-imagen">
-            <img src="images/lomo_piedra.jpg" alt="Lomo a la piedra" />
-            <span class="precio-badge">$11.00</span>
+        <!-- ✦ PLATO ESTRELLA — tratamiento visual diferenciado -->
+        <article class="card-plato card-estrella" aria-label="Borrego a la piedra — Plato Estrella — $8.00">
+          <div class="estrella-ribbon" aria-hidden="true">
+            <span>⭐ Plato Estrella</span>
           </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Lomo Andino</h3>
-            <p class="plato-descripcion">250g de lomo fino acompañado de papitas al vapor y ensalada de la casa.</p>
-          </div>
-        </article>
-
-        <article class="card-plato" aria-label="Borrego a la piedra - Plato Estrella">
           <div class="card-imagen">
-            <img src="images/borrego_piedra.jpg" alt="Borrego a la piedra" />
-            <span class="precio-badge">$8.00</span>
-            <span class="badge-especial">⭐ Plato Estrella</span>
+            <img src="images/borrego_piedra.jpg"
+                 alt="Borrego a la piedra con papas al vapor, ensalada y salsa Maky"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$8.00</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Borrego a la piedra</h3>
             <p class="plato-descripcion">Corte especial de cordero, papas al vapor, ensalada de la casa acompañada de salsa Maky.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $8.00">$8.00</span>
           </div>
         </article>
 
-        <article class="card-plato" aria-label="Seco de chivo">
+        <article class="card-plato" aria-label="Seco de chivo — $8.00">
           <div class="card-imagen">
-            <img src="images/seco_chivo.jpg" alt="Seco de chivo" />
-            <span class="precio-badge">$8.00</span>
+            <img src="images/seco_chivo.jpg"
+                 alt="Seco de chivo con arroz amarillo y ensalada de la casa"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$8.00</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Seco de chivo</h3>
-            <p class="plato-descripcion">Deliciosa y suave carne de cordero acompañada de arroz amarillo y ensalada de la casa.</p>
+            <p class="plato-descripcion">Deliciosa y suave carne de cordero con arroz amarillo y ensalada de la casa.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $8.00">$8.00</span>
           </div>
         </article>
 
-        <article class="card-plato" aria-label="T-bone andino">
+        <article class="card-plato" aria-label="Lomo Andino — $11.00">
           <div class="card-imagen">
-            <img src="images/tbone_andino.jpg" alt="T-bone andino" />
-            <span class="precio-badge">$11.00</span>
+            <img src="images/lomo_piedra.jpg"
+                 alt="Lomo fino a la piedra con papitas al vapor y ensalada"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$11.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Lomo Andino</h3>
+            <p class="plato-descripcion">250g de lomo fino acompañado de papitas al vapor y ensalada de la casa.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $11.00">$11.00</span>
+          </div>
+        </article>
+
+        <article class="card-plato" aria-label="T-bone andino — $11.00">
+          <div class="card-imagen">
+            <img src="images/tbone_andino.jpg"
+                 alt="T-bone andino con papitas al vapor y ensalada"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$11.00</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">T-bone andino</h3>
             <p class="plato-descripcion">Acompañado de papitas al vapor y ensalada de la casa.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $11.00">$11.00</span>
           </div>
         </article>
 
-        <article class="card-plato" aria-label="Ribeye andino">
+        <article class="card-plato" aria-label="Ribeye andino — $12.00">
           <div class="card-imagen">
-            <img src="images/ribeye_andino.jpg" alt="Ribeye andino" />
-            <span class="precio-badge">$12.00</span>
+            <img src="images/ribeye_andino.jpg"
+                 alt="Ribeye andino con papitas al vapor y ensalada"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$12.00</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Ribeye andino</h3>
             <p class="plato-descripcion">Acompañado de papitas al vapor y ensalada de la casa.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $12.00">$12.00</span>
           </div>
         </article>
 
-        <article class="card-plato" aria-label="Cuy">
+        <article class="card-plato" aria-label="Chuleta de cerdo — $5.50">
           <div class="card-imagen">
-            <img src="images/cuy.jpg" alt="Cuy al horno de leña" />
-            <span class="precio-badge">$20.00</span>
-            <span class="badge-especial">Bajo reservación</span>
+            <img src="images/Chuleta_cerdo.jpg"
+                 alt="Chuleta de cerdo 300g con papitas, arroz y ensalada"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$5.50</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Chuleta de cerdo</h3>
+            <p class="plato-descripcion">300g de chuleta de cerdo con papitas al vapor, arroz y ensalada de la casa.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $5.50">$5.50</span>
+          </div>
+        </article>
+
+        <article class="card-plato" aria-label="Filete de pollo a la piedra — $5.00">
+          <div class="card-imagen">
+            <img src="images/filete_pollo.jpg"
+                 alt="Pechuga de pollo a la piedra con papitas y ensalada"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$5.00</span>
+          </div>
+          <div class="card-cuerpo">
+            <h3 class="plato-nombre">Filete de pollo a la piedra</h3>
+            <p class="plato-descripcion">250g de pechuga de pollo con papitas al vapor y ensalada de la casa.</p>
+            <span class="precio-inline-mobile" aria-label="Precio: $5.00">$5.00</span>
+          </div>
+        </article>
+
+        <!-- ✦ CUY — con reservación -->
+        <article class="card-plato card-reserva" aria-label="Cuy al horno — bajo reservación — $20.00">
+          <div class="card-imagen">
+            <img src="images/cuy.jpg"
+                 alt="Cuy entero horneado en horno de leña con papas en salsa de maní y aguacate"
+                 loading="lazy" width="300" height="220" />
+            <span class="precio-badge" aria-hidden="true">$20.00</span>
+            <span class="badge-especial" aria-hidden="true">Bajo reservación</span>
           </div>
           <div class="card-cuerpo">
             <h3 class="plato-nombre">Cuy</h3>
-            <p class="plato-descripcion">Cuy entero horneado en horno de leña, con papas bañadas en salsa de maní, ensalada fresca del huerto y aguacate.</p>
+            <p class="plato-descripcion">Cuy entero horneado en horno de leña, papas en salsa de maní, ensalada del huerto y aguacate.</p>
             <span class="plato-nota">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/>
               </svg>
               Requiere reservación previa
             </span>
-          </div>
-        </article>
-
-        <article class="card-plato" aria-label="Chuleta de cerdo">
-          <div class="card-imagen">
-            <img src="images/Chuleta_cerdo.jpg" alt="Chuleta de cerdo" />
-            <span class="precio-badge">$5.50</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Chuleta de cerdo</h3>
-            <p class="plato-descripcion">300g de chuleta de cerdo acompañados de papitas al vapor, arroz y ensalada de la casa.</p>
-          </div>
-        </article>
-
-        <article class="card-plato" aria-label="Filete de pollo a la piedra">
-          <div class="card-imagen">
-            <img src="images/filete_pollo.jpg" alt="Filete de pollo a la piedra" />
-            <span class="precio-badge">$5.00</span>
-          </div>
-          <div class="card-cuerpo">
-            <h3 class="plato-nombre">Filete de pollo a la piedra</h3>
-            <p class="plato-descripcion">250g de pechuga de pollo acompañado con papitas al vapor y ensalada de la casa.</p>
+            <a href="https://wa.me/message/36RUZI6AT5GEN1"
+               class="btn-reservar"
+               target="_blank" rel="noopener"
+               aria-label="Reservar cuy por WhatsApp">
+              Reservar por WhatsApp
+            </a>
+            <span class="precio-inline-mobile" aria-label="Precio: $20.00">$20.00</span>
           </div>
         </article>
 
@@ -324,80 +455,203 @@
     </div>
   </section>
 
-  <!-- =========================================================
+  <!-- ═══════════════════════════════════════════════════════════════════════
        PARA LOS GUAGUAS
-  ========================================================= -->
-  <section class="seccion seccion-guaguas" id="guaguas">
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="seccion seccion-guaguas" id="guaguas" aria-labelledby="titulo-guaguas">
     <div class="contenedor">
       <div class="seccion-header">
-        <div class="seccion-etiqueta">Para los más pequeños</div>
-        <h2 class="seccion-titulo">¡Para los guaguas!</h2>
-        <div class="seccion-divider"></div>
+        <div class="seccion-etiqueta" aria-hidden="true">Para los más pequeños</div>
+        <h2 class="seccion-titulo" id="titulo-guaguas">¡Para los guaguas!</h2>
+        <div class="seccion-divider" aria-hidden="true"></div>
       </div>
 
-      <article class="guaguas-card card-plato">
+      <article class="guaguas-card card-plato" aria-label="Alitas en salsa Guachaleña — $5.00">
         <div class="card-imagen">
-          <img src="images/alitas_guachalena.jpg" alt="Alitas en salsa Guachaleña" />
+          <img src="images/alitas_guachalena.jpg"
+               alt="Alitas al horno en salsa de uvilla y miel con papas fritas"
+               loading="lazy" width="600" height="280" />
         </div>
         <div class="card-cuerpo">
           <h3 class="plato-nombre">Alitas en salsa Guachaleña</h3>
-          <p class="plato-descripcion">Alitas al horno en salsa de uvilla y miel de chawar miske acompañado con papas fritas.</p>
-          <span class="precio-grande">$5.00</span>
+          <p class="plato-descripcion">Alitas al horno en salsa de uvilla y miel de chawar miske, acompañadas con papas fritas.</p>
+          <span class="precio-grande" aria-label="Precio: $5.00">$5.00</span>
         </div>
       </article>
 
     </div>
   </section>
 
-  <!-- =========================================================
-       BEBIDAS
-  ========================================================= -->
-  <section class="seccion seccion-bebidas" id="bebidas">
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       BEBIDAS — sección con más protagonismo
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="seccion seccion-bebidas" id="bebidas" aria-labelledby="titulo-bebidas">
     <div class="contenedor">
       <div class="seccion-header">
-        <div class="seccion-etiqueta">Líquidos &amp; Refrescantes</div>
-        <h2 class="seccion-titulo">¡Y para pasar!</h2>
-        <div class="seccion-divider"></div>
+        <div class="seccion-etiqueta" aria-hidden="true">Líquidos &amp; Refrescantes</div>
+        <h2 class="seccion-titulo" id="titulo-bebidas">¡Y para pasar!</h2>
+        <div class="seccion-divider" aria-hidden="true"></div>
       </div>
 
-      <div class="bebidas-imagen-deco">
-        <img src="images/chicha_jora.jpeg" alt="Chicha de Jora artesanal" />
+      <!-- Imagen de chicha con texto destacado -->
+      <div class="bebidas-hero">
+        <div class="bebidas-imagen-deco">
+          <img src="images/chicha_jora.jpeg" alt="Chicha de Jora artesanal en jarra de barro"
+               loading="lazy" width="200" height="200" />
+        </div>
+        <div class="bebidas-hero-texto">
+          <p class="bebidas-destacada-label">La estrella de la casa</p>
+          <p class="bebidas-destacada-nombre">Chicha de Jora</p>
+          <p class="bebidas-destacada-precio" aria-label="Precio Chicha de Jora: $4.50">$4.50</p>
+          <p class="bebidas-destacada-desc">Fermentada artesanalmente con maíz del páramo. La tradición en cada sorbo.</p>
+        </div>
       </div>
 
-      <div class="bebidas-grid">
-        <div class="bebida-item"><span class="bebida-nombre">Chicha de Jora</span><span class="bebida-precio">$4.50</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Limonada normal</span><span class="bebida-precio">$4.00</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Limonada de frutos rojos</span><span class="bebida-precio">$4.50</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Limonada de la casa</span><span class="bebida-precio">$4.50</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Limonada de fresa</span><span class="bebida-precio">$4.50</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Gaseosa 300 cc</span><span class="bebida-precio">$1.00</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Cerveza Pilsener 750 cc</span><span class="bebida-precio">$2.50</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Cerveza Club 750 cc</span><span class="bebida-precio">$3.00</span></div>
-        <div class="bebida-item"><span class="bebida-nombre">Guittig</span><span class="bebida-precio">$1.00</span></div>
+      <div class="bebidas-grid" role="list">
+        <div class="bebida-item" role="listitem">
+          <span class="bebida-nombre">Limonada normal</span>
+          <span class="bebida-precio" aria-label="$4.00">$4.00</span>
+        </div>
+        <div class="bebida-item" role="listitem">
+          <span class="bebida-nombre">Limonada de frutos rojos</span>
+          <span class="bebida-precio" aria-label="$4.50">$4.50</span>
+        </div>
+        <div class="bebida-item" role="listitem">
+          <span class="bebida-nombre">Limonada de la casa</span>
+          <span class="bebida-precio" aria-label="$4.50">$4.50</span>
+        </div>
+        <div class="bebida-item" role="listitem">
+          <span class="bebida-nombre">Limonada de fresa</span>
+          <span class="bebida-precio" aria-label="$4.50">$4.50</span>
+        </div>
+        <div class="bebida-item" role="listitem">
+          <span class="bebida-nombre">Gaseosa 300 cc</span>
+          <span class="bebida-precio" aria-label="$1.00">$1.00</span>
+        </div>
+        <div class="bebida-item" role="listitem">
+          <span class="bebida-nombre">Cerveza Pilsener 750 cc</span>
+          <span class="bebida-precio" aria-label="$2.50">$2.50</span>
+        </div>
+        <div class="bebida-item" role="listitem">
+          <span class="bebida-nombre">Cerveza Club 750 cc</span>
+          <span class="bebida-precio" aria-label="$3.00">$3.00</span>
+        </div>
+        <div class="bebida-item" role="listitem">
+          <span class="bebida-nombre">Guittig</span>
+          <span class="bebida-precio" aria-label="$1.00">$1.00</span>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- =========================================================
-       FOOTER — ✨ con redes sociales reales e interactivas
-  ========================================================= -->
-  <footer>
-    <div class="footer-logo">Maky</div>
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       BLOQUE DE UBICACIÓN Y CONFIANZA — antes del footer
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <section class="seccion-ubicacion" aria-labelledby="titulo-ubicacion">
+    <div class="contenedor">
+      <div class="ubicacion-grid">
+
+        <!-- Info de contacto -->
+        <div class="ubicacion-info">
+          <p class="ubicacion-label">¿Cómo llegar?</p>
+          <h2 class="ubicacion-titulo" id="titulo-ubicacion">Encuéntranos en el páramo</h2>
+          <div class="ubicacion-datos">
+            <div class="ubicacion-dato">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <div>
+                <strong>Dirección</strong>
+                <span>Buena Esperanza de Guachala<br>km 3.6 vía Cangahua</span>
+              </div>
+            </div>
+            <div class="ubicacion-dato">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <div>
+                <strong>Teléfono</strong>
+                <a href="tel:+593968865293" aria-label="Llamar a Maky Restaurante">0968 865 293</a>
+              </div>
+            </div>
+            <div class="ubicacion-dato">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+              </svg>
+              <div>
+                <strong>Horario</strong>
+                <span>Martes a Domingo<br>10:00 am — 5:00 pm</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/bGsWgJE2miH6yZyw6"
+             target="_blank" rel="noopener"
+             class="btn-mapa"
+             aria-label="Abrir ubicación en Google Maps">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Ver en Google Maps
+          </a>
+        </div>
+
+        <!-- Confianza social -->
+        <div class="confianza-social">
+          <p class="ubicacion-label">¿Por qué Maky?</p>
+          <div class="trust-badges">
+            <div class="trust-badge">
+              <span class="trust-icon" aria-hidden="true">🔥</span>
+              <div>
+                <strong>Cocina a leña</strong>
+                <span>Sabor auténtico que no se olvida</span>
+              </div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-icon" aria-hidden="true">🌿</span>
+              <div>
+                <strong>Ingredientes del páramo</strong>
+                <span>Frescos, locales y de temporada</span>
+              </div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-icon" aria-hidden="true">👨‍👩‍👧</span>
+              <div>
+                <strong>Restaurante familiar</strong>
+                <span>Desde el campo directo a tu mesa</span>
+              </div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-icon" aria-hidden="true">💳</span>
+              <div>
+                <strong>Aceptamos tarjetas</strong>
+                <span>Visa, MasterCard, Diners, AmEx</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="footer-logo" aria-label="Maky Restaurante">Maky</div>
     <p class="footer-slogan">Sabor tradicional del páramo</p>
 
     <div class="footer-hashtag">#Makyrestaurante</div>
 
-    <!-- ✨ REEMPLAZA el <p class="footer-redes"> estático por esto: -->
     <p class="footer-redes-titulo">Síguenos y encuéntranos</p>
-    <div class="footer-redes">
+    <nav class="footer-redes" aria-label="Redes sociales y contacto">
 
       <a href="https://www.facebook.com/MakyRestaurante"
          target="_blank" rel="noopener noreferrer"
          class="footer-red-link fb"
-         aria-label="Facebook de Maky Restaurante">
-        <!-- Ícono Facebook SVG ligero -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+         aria-label="Visitar Facebook de Maky Restaurante (abre en nueva pestaña)">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
         </svg>
         Facebook
@@ -406,9 +660,8 @@
       <a href="https://www.tiktok.com/@maky.restaurant?_r=1&_t=ZS-96abN9vFfwj"
          target="_blank" rel="noopener noreferrer"
          class="footer-red-link tt"
-         aria-label="TikTok de Maky Restaurante">
-        <!-- Ícono TikTok SVG ligero -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+         aria-label="Visitar TikTok de Maky Restaurante (abre en nueva pestaña)">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
         </svg>
         TikTok
@@ -417,9 +670,8 @@
       <a href="https://wa.me/message/36RUZI6AT5GEN1"
          target="_blank" rel="noopener noreferrer"
          class="footer-red-link wa"
-         aria-label="WhatsApp de Maky Restaurante">
-        <!-- Ícono WhatsApp SVG ligero -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+         aria-label="Contactar a Maky por WhatsApp (abre en nueva pestaña)">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
         WhatsApp
@@ -428,42 +680,38 @@
       <a href="https://maps.app.goo.gl/bGsWgJE2miH6yZyw6"
          target="_blank" rel="noopener noreferrer"
          class="footer-red-link gm"
-         aria-label="Ubicación en Google Maps">
-        <!-- Ícono Mapa SVG ligero -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+         aria-label="Ver ubicación en Google Maps (abre en nueva pestaña)">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
         </svg>
         Cómo llegar
       </a>
 
-    </div>
+    </nav>
 
-    <div class="tarjetas-titulo">Aceptamos todas las tarjetas de crédito</div>
-    <div class="tarjetas-lista">
-      <div class="tarjeta-badge"><div class="dot" style="background:#004A97"></div> Diners Club</div>
-      <div class="tarjeta-badge"><div class="dot" style="background:#EB001B"></div> MasterCard</div>
-      <div class="tarjeta-badge"><div class="dot" style="background:#1A1F71"></div> Visa</div>
-      <div class="tarjeta-badge"><div class="dot" style="background:#2E77BC"></div> American Express</div>
-    </div>
-
-    <p class="footer-copy">© 2025 Maky Restaurante — Todos los derechos reservados<br>
-      <small style="opacity:0.6;">Buena Esperanza de Guachala km 3.6 vía Cangahua · 0968865293</small>
+    <p class="footer-copy">
+      © 2025 Maky Restaurante — Todos los derechos reservados<br>
+      <small>
+        <a href="tel:+593968865293" aria-label="Llamar al restaurante">0968 865 293</a>
+        &nbsp;·&nbsp;
+        Buena Esperanza de Guachala km 3.6 vía Cangahua
+      </small>
     </p>
   </footer>
 
-  <!-- =====================================================
-       BOTÓN FLOTANTE WHATSAPP ✨
-  ===================================================== -->
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       BOTÓN FLOTANTE WHATSAPP con tooltip
+  ═══════════════════════════════════════════════════════════════════════════ -->
   <a href="https://wa.me/message/36RUZI6AT5GEN1"
      target="_blank" rel="noopener noreferrer"
      class="btn-whatsapp"
-     aria-label="Contáctanos por WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+     aria-label="Contactar o reservar por WhatsApp">
+    <span class="wa-tooltip" aria-hidden="true">¡Escríbenos!</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
 
   <script src="script.js" defer></script>
-
 </body>
 </html>

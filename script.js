@@ -1,103 +1,187 @@
 /**
- * Maky Restaurant - Main JavaScript
- * Handles dynamic image validation, card-to-list conversion,
- * scroll animations, smooth navigation, and nav scroll indicator.
+ * Maky Restaurante — script.js
+ * Resuelve: smooth scroll con offset, nav activa, indicador de scroll nav,
+ * validación de imágenes, skeleton loader, analytics básico y scroll a inicio.
  */
 
-// ─── Utilidad: altura de la barra sticky ────────────────────────────────────
+// ─── Utilidades ──────────────────────────────────────────────────────────────
+
 function getNavHeight() {
   const nav = document.querySelector('.nav-sticky');
   return nav ? nav.getBoundingClientRect().height : 0;
 }
 
-// ─── Get or create list container for a section ─────────────────────────────
-function getOrCreateListContainer(section) {
-  let listContainer = section.querySelector('.lista-platos-dinamica');
-
-  if (!listContainer) {
-    const gridContainer = section.querySelector('.grid-platos');
-    listContainer = document.createElement('div');
-    listContainer.className = 'lista-platos lista-platos-dinamica';
-    listContainer.style.marginTop = '32px';
-
-    if (gridContainer) {
-      gridContainer.parentNode.insertBefore(listContainer, gridContainer.nextSibling);
-    } else {
-      section.querySelector('.contenedor').appendChild(listContainer);
-    }
+// ─── Scroll al inicio en cada carga (evita posición guardada en móvil) ───────
+window.addEventListener('load', () => {
+  // Solo si el hash está vacío o es #inicio
+  if (!window.location.hash || window.location.hash === '#inicio') {
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
+});
 
-  return listContainer;
-}
+// ─── Smooth scroll con offset dinámico ───────────────────────────────────────
+function initSmoothScrollWithOffset() {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').slice(1);
+      if (!targetId) return;
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
+      e.preventDefault();
 
-// ─── Convert card to list format when image fails ───────────────────────────
-function convertCardToList(cardElement) {
-  const cardImagen = cardElement.querySelector('.card-imagen');
-  const cardCuerpo = cardElement.querySelector('.card-cuerpo');
+      const navHeight = getNavHeight();
+      const top = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
 
-  if (!cardImagen || !cardCuerpo) return;
+      window.scrollTo({ top, behavior: 'smooth' });
+      scrollNavToItem(this);
 
-  const nombre      = cardCuerpo.querySelector('.plato-nombre')?.textContent || '';
-  const descripcion = cardCuerpo.querySelector('.plato-descripcion')?.textContent || '';
-
-  let precio = '';
-  const precioBadge  = cardImagen.querySelector('.precio-badge');
-  const precioInline = cardCuerpo.querySelector('.precio-inline');
-  const precioGrande = cardCuerpo.querySelector('.precio-grande');
-
-  if (precioBadge)  precio = precioBadge.textContent;
-  else if (precioInline) precio = precioInline.textContent;
-  else if (precioGrande) precio = precioGrande.textContent;
-
-  const badgeEspecial = cardImagen.querySelector('.badge-especial');
-  const platoNota     = cardCuerpo.querySelector('.plato-nota');
-
-  const listItem = document.createElement('div');
-  listItem.className = 'item-lista';
-  listItem.setAttribute('aria-label', cardElement.getAttribute('aria-label') || nombre);
-
-  listItem.innerHTML = `
-    <div class="item-lista-info">
-      <h3 class="item-lista-nombre">${nombre}${badgeEspecial ? ' ' + badgeEspecial.textContent : ''}</h3>
-      <p class="item-lista-desc">${descripcion}</p>
-      ${platoNota ? `<span class="plato-nota" style="display:inline-flex; align-items:center; gap:6px; margin-top:8px; font-size:0.78rem; font-style:italic; color:var(--tierra);">${platoNota.innerHTML}</span>` : ''}
-    </div>
-    <span class="item-lista-precio">${precio}</span>
-  `;
-  listItem.classList.add('visible');
-
-  const section = cardElement.closest('section');
-  const listContainer = getOrCreateListContainer(section);
-
-  cardElement.remove();
-  listContainer.appendChild(listItem);
-
-  const gridContainer = section.querySelector('.grid-platos, .dos-col');
-  if (gridContainer && gridContainer.children.length === 0) {
-    gridContainer.style.display = 'none';
-  }
-}
-
-// ─── Check if image exists ───────────────────────────────────────────────────
-function checkImageExists(imgElement, cardElement) {
-  const img = new Image();
-  img.src = imgElement.src;
-
-  img.onload  = () => cardElement.classList.add('imagen-existe');
-  img.onerror = () => convertCardToList(cardElement);
-}
-
-// ─── Dynamic image validation ────────────────────────────────────────────────
-function initDynamicImageValidation() {
-  const allCards = document.querySelectorAll('.card-plato, .card-horizontal, .guaguas-card');
-
-  allCards.forEach(card => {
-    const img = card.querySelector('.card-imagen img');
-    if (img && img.src) checkImageExists(img, card);
+      // Accesibilidad: mover el foco al heading de la sección
+      const heading = targetEl.querySelector('h2, h1');
+      if (heading) {
+        heading.setAttribute('tabindex', '-1');
+        heading.focus({ preventScroll: true });
+      }
+    });
   });
 }
 
-// ─── Static image error handling ────────────────────────────────────────────
+// ─── Centra el ítem activo dentro de la barra nav (móvil) ────────────────────
+function scrollNavToItem(link) {
+  const wrapper = document.getElementById('navScrollWrapper');
+  if (!wrapper) return;
+  const left = link.offsetLeft - wrapper.offsetWidth / 2 + link.offsetWidth / 2;
+  wrapper.scrollTo({ left, behavior: 'smooth' });
+}
+
+// ─── Nav activa en scroll ─────────────────────────────────────────────────────
+function initNavActiveState() {
+  const secciones = document.querySelectorAll('section[id]');
+  const navItems  = document.querySelectorAll('.nav-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(i => i.classList.remove('activo'));
+        const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+        if (active) {
+          active.classList.add('activo');
+          active.setAttribute('aria-current', 'true');
+          scrollNavToItem(active);
+        }
+        navItems.forEach(i => {
+          if (!i.classList.contains('activo')) i.removeAttribute('aria-current');
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+
+  secciones.forEach(s => observer.observe(s));
+}
+
+// ─── Indicador de scroll en nav (fade a la derecha) ──────────────────────────
+function initNavScrollIndicator() {
+  const wrapper = document.getElementById('navScrollWrapper');
+  if (!wrapper) return;
+
+  const update = () => {
+    const { scrollLeft, scrollWidth, clientWidth } = wrapper;
+    wrapper.classList.toggle('al-final', scrollLeft + clientWidth >= scrollWidth - 4);
+  };
+
+  wrapper.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+}
+
+// ─── Skeleton loader: reemplaza fondo de .card-imagen con shimmer ─────────────
+function initSkeletonLoader() {
+  document.querySelectorAll('.card-imagen').forEach(wrapper => {
+    wrapper.classList.add('skeleton');
+    const img = wrapper.querySelector('img');
+    if (!img) return;
+
+    const removeShimmer = () => wrapper.classList.remove('skeleton');
+    if (img.complete) { removeShimmer(); return; }
+    img.addEventListener('load',  removeShimmer, { once: true });
+    img.addEventListener('error', removeShimmer, { once: true });
+  });
+}
+
+// ─── Get or create lista dinámica ────────────────────────────────────────────
+function getOrCreateListContainer(section) {
+  let list = section.querySelector('.lista-platos-dinamica');
+  if (!list) {
+    list = document.createElement('div');
+    list.className = 'lista-platos lista-platos-dinamica';
+    list.style.marginTop = '32px';
+    const grid = section.querySelector('.grid-platos, .dos-col');
+    if (grid) grid.parentNode.insertBefore(list, grid.nextSibling);
+    else section.querySelector('.contenedor')?.appendChild(list);
+  }
+  return list;
+}
+
+// ─── Convierte card a ítem de lista cuando la imagen falla ───────────────────
+function convertCardToList(card) {
+  const cardImagen = card.querySelector('.card-imagen');
+  const cardCuerpo = card.querySelector('.card-cuerpo');
+  if (!cardImagen || !cardCuerpo) return;
+
+  const nombre      = cardCuerpo.querySelector('.plato-nombre')?.textContent?.trim() || '';
+  const descripcion = cardCuerpo.querySelector('.plato-descripcion')?.textContent?.trim() || '';
+  const platoNota   = cardCuerpo.querySelector('.plato-nota');
+  const badgeEsp    = cardImagen.querySelector('.badge-especial');
+
+  let precio = '';
+  const badge  = cardImagen.querySelector('.precio-badge');
+  const inline = cardCuerpo.querySelector('.precio-inline');
+  const grande = cardCuerpo.querySelector('.precio-grande');
+  if (badge)  precio = badge.textContent.trim();
+  else if (inline) precio = inline.textContent.trim();
+  else if (grande) precio = grande.textContent.trim();
+
+  const item = document.createElement('div');
+  item.className = 'item-lista visible';
+  item.setAttribute('aria-label', card.getAttribute('aria-label') || nombre);
+  item.innerHTML = `
+    <div class="item-lista-info">
+      <h3 class="item-lista-nombre">${nombre}${badgeEsp ? ' <small style="font-size:.7em;opacity:.7;">' + badgeEsp.textContent.trim() + '</small>' : ''}</h3>
+      <p class="item-lista-desc">${descripcion}</p>
+      ${platoNota ? `<span class="plato-nota" style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:.78rem;font-style:italic;color:var(--tierra);">${platoNota.innerHTML}</span>` : ''}
+    </div>
+    <span class="item-lista-precio" aria-label="Precio: ${precio}">${precio}</span>
+  `;
+
+  const section = card.closest('section');
+  const listContainer = getOrCreateListContainer(section);
+  card.remove();
+  listContainer.appendChild(item);
+
+  const grid = section.querySelector('.grid-platos, .dos-col');
+  if (grid && grid.children.length === 0) grid.style.display = 'none';
+}
+
+// ─── Valida existencia de imagen con guard ────────────────────────────────────
+function checkImageExists(imgEl, card) {
+  // Guard: src vacío o data-url no necesita validación
+  if (!imgEl.src || imgEl.src === window.location.href) {
+    convertCardToList(card);
+    return;
+  }
+  const probe = new Image();
+  probe.onload  = () => card.classList.add('imagen-existe');
+  probe.onerror = () => convertCardToList(card);
+  probe.src = imgEl.src;
+}
+
+function initDynamicImageValidation() {
+  document.querySelectorAll('.card-plato, .card-horizontal, .guaguas-card').forEach(card => {
+    const img = card.querySelector('.card-imagen img');
+    if (img) checkImageExists(img, card);
+  });
+}
+
+// ─── Logo e imagen decorativa ─────────────────────────────────────────────────
 function initStaticImageErrorHandling() {
   const logoImg = document.querySelector('.logo-img');
   if (logoImg) {
@@ -105,123 +189,66 @@ function initStaticImageErrorHandling() {
       this.style.display = 'none';
       const fallback = document.getElementById('logo-texto-fallback');
       if (fallback) fallback.style.display = 'block';
-    });
+    }, { once: true });
   }
 
   const beverageImg = document.querySelector('.bebidas-imagen-deco img');
   if (beverageImg) {
     beverageImg.addEventListener('error', function () {
-      this.style.display = 'none';
-    });
+      this.closest('.bebidas-imagen-deco')?.style && (this.closest('.bebidas-imagen-deco').style.display = 'none');
+    }, { once: true });
   }
 }
 
-// ─── Scroll animations (IntersectionObserver) ───────────────────────────────
+// ─── Animaciones de entrada por Intersection Observer ────────────────────────
 function initScrollAnimations() {
-  const observables = document.querySelectorAll(
-    '.card-plato, .card-horizontal, .bebida-item, .item-lista, .guaguas-card'
+  const items = document.querySelectorAll(
+    '.card-plato, .card-horizontal, .bebida-item, .item-lista, .guaguas-card, .trust-badge'
   );
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const siblings = Array.from(entry.target.parentElement.children);
-        const idx = siblings.indexOf(entry.target);
-        entry.target.style.transitionDelay = `${idx * 80}ms`;
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  observables.forEach(el => observer.observe(el));
-}
-
-// ─── ✨ SMOOTH SCROLL con ajuste de offset dinámico ─────────────────────────
-// Intercepta todos los clicks en .nav-item y hace un scroll suave
-// desplazándose el alto exacto de la barra sticky.
-function initSmoothScrollWithOffset() {
-  const navLinks = document.querySelectorAll('.nav-item[href^="#"]');
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      const targetId = this.getAttribute('href').slice(1);
-      const targetEl = document.getElementById(targetId);
-      if (!targetEl) return;
-
-      const navHeight = getNavHeight();
-      const elementTop = targetEl.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementTop - navHeight - 8; // 8px de margen extra
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-
-      // También desplaza la propia nav hacia el botón activo en móvil
-      scrollNavToActiveItem(this);
-    });
-  });
-}
-
-// ─── ✨ Desplaza la barra nav para centrar el ítem activo ────────────────────
-function scrollNavToActiveItem(activeLink) {
-  const wrapper = document.getElementById('navScrollWrapper');
-  if (!wrapper) return;
-
-  const linkLeft  = activeLink.offsetLeft;
-  const linkWidth = activeLink.offsetWidth;
-  const wrapperWidth = wrapper.offsetWidth;
-
-  const scrollTarget = linkLeft - wrapperWidth / 2 + linkWidth / 2;
-  wrapper.scrollTo({ left: scrollTarget, behavior: 'smooth' });
-}
-
-// ─── Navigation active state on scroll ──────────────────────────────────────
-function initNavActiveState() {
-  const secciones = document.querySelectorAll('section[id]');
-  const navItems  = document.querySelectorAll('.nav-item');
-
-  const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navItems.forEach(item => item.classList.remove('activo'));
-        const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
-        if (active) {
-          active.classList.add('activo');
-          scrollNavToActiveItem(active);
-        }
+      if (!entry.isIntersecting) return;
+      const siblings = Array.from(entry.target.parentElement?.children || []);
+      const idx = siblings.indexOf(entry.target);
+      entry.target.style.transitionDelay = `${Math.min(idx * 70, 400)}ms`;
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -32px 0px' });
+
+  items.forEach(el => observer.observe(el));
+}
+
+// ─── Analytics básico: registra secciones visitadas (Privacy-first) ──────────
+// No envía datos a ningún servidor, solo registra en consola para debugging.
+// Reemplazar con tu herramienta de analytics real (Plausible, Fathom, etc.)
+function initSectionTracking() {
+  const secciones = document.querySelectorAll('section[id]');
+  const visited = new Set();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !visited.has(entry.target.id)) {
+        visited.add(entry.target.id);
+        // → Aquí conectar con tu analytics:
+        // plausible('pageview', { props: { section: entry.target.id } });
+        console.info('[Maky Analytics] Sección vista:', entry.target.id);
       }
     });
-  }, { threshold: 0.35 });
+  }, { threshold: 0.4 });
 
-  secciones.forEach(s => navObserver.observe(s));
+  secciones.forEach(s => observer.observe(s));
 }
 
-// ─── ✨ Indicador de scroll en la barra nav (quita el fade al llegar al fin) ─
-function initNavScrollIndicator() {
-  const wrapper = document.getElementById('navScrollWrapper');
-  if (!wrapper) return;
-
-  function updateFade() {
-    const { scrollLeft, scrollWidth, clientWidth } = wrapper;
-    const atEnd = scrollLeft + clientWidth >= scrollWidth - 4;
-    wrapper.classList.toggle('al-final', atEnd);
-  }
-
-  wrapper.addEventListener('scroll', updateFade, { passive: true });
-  // Comprobación inicial
-  updateFade();
-}
-
-// ─── Init ────────────────────────────────────────────────────────────────────
+// ─── Init ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  initSkeletonLoader();
   initDynamicImageValidation();
   initStaticImageErrorHandling();
   initScrollAnimations();
-  initSmoothScrollWithOffset();   // ✨ nuevo
+  initSmoothScrollWithOffset();
   initNavActiveState();
-  initNavScrollIndicator();       // ✨ nuevo
+  initNavScrollIndicator();
+  initSectionTracking();
 });
