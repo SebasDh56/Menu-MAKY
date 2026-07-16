@@ -1,10 +1,12 @@
 /**
  * Maky Restaurante — script.js
  * Resuelve: smooth scroll con offset, nav activa, indicador de scroll nav,
- * validación de imágenes, skeleton loader, analytics básico y scroll a inicio.
+ * validación de imágenes opcionales, skeleton loader y scroll a inicio.
  */
 
 // ─── Utilidades ──────────────────────────────────────────────────────────────
+
+const DEBUG_SECTION_TRACKING = false;
 
 function getNavHeight() {
   const nav = document.querySelector('.nav-sticky');
@@ -220,10 +222,10 @@ function initScrollAnimations() {
   items.forEach(el => observer.observe(el));
 }
 
-// ─── Analytics básico: registra secciones visitadas (Privacy-first) ──────────
-// No envía datos a ningún servidor, solo registra en consola para debugging.
-// Reemplazar con tu herramienta de analytics real (Plausible, Fathom, etc.)
+// ─── Tracking local opcional para debugging ──────────────────────────────────
 function initSectionTracking() {
+  if (!DEBUG_SECTION_TRACKING) return;
+
   const secciones = document.querySelectorAll('section[id]');
   const visited = new Set();
 
@@ -231,8 +233,6 @@ function initSectionTracking() {
     entries.forEach(entry => {
       if (entry.isIntersecting && !visited.has(entry.target.id)) {
         visited.add(entry.target.id);
-        // → Aquí conectar con tu analytics:
-        // plausible('pageview', { props: { section: entry.target.id } });
         console.info('[Maky Analytics] Sección vista:', entry.target.id);
       }
     });
