@@ -35,6 +35,13 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+img { max-width: 100%; }
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 3px solid var(--dorado-suave);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
 
 /* Textura sutil */
 body::before {
@@ -53,6 +60,7 @@ body::before {
   z-index: 9999; transition: top 0.3s; text-decoration: none;
 }
 .skip-link:focus { top: 0; }
+.skip-link:focus-visible { outline-color: var(--blanco); }
 
 /* =============================================
    HERO
@@ -198,6 +206,7 @@ body::before {
 }
 .nav-item {
   display: inline-block; padding: 15px 20px;
+  min-height: 44px;
   font-family: var(--font-display); font-size: 0.66rem;
   letter-spacing: 0.16em; text-transform: uppercase;
   color: rgba(253,250,245,0.62); text-decoration: none;
@@ -220,6 +229,7 @@ body::before {
    ENCABEZADOS DE SECCIÓN
 ============================================= */
 .seccion { padding: 80px 0 60px; }
+.seccion[id] { scroll-margin-top: 72px; }
 .seccion-header { text-align: center; margin-bottom: 52px; }
 .seccion-etiqueta {
   display: inline-block; font-family: var(--font-display);
@@ -328,6 +338,7 @@ body::before {
   font-weight: 600; letter-spacing: 0.06em;
   padding: 8px 18px; border-radius: 30px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.3), 0 0 0 1px rgba(201,168,76,0.2);
+  line-height: 1;
 }
 .badge-especial {
   position: absolute; top: 14px; left: 14px; z-index: 2;
@@ -358,6 +369,7 @@ body::before {
   padding: 6px 16px;
   background: linear-gradient(135deg, rgba(27,48,34,0.05), rgba(201,168,76,0.1));
   border-radius: 20px; border: 1px solid rgba(201,168,76,0.2);
+  line-height: 1;
 }
 
 /* Precio inline mobile — aparece solo en móvil */
@@ -368,6 +380,7 @@ body::before {
   padding: 5px 14px;
   background: linear-gradient(135deg, rgba(27,48,34,0.05), rgba(201,168,76,0.1));
   border-radius: 20px; border: 1px solid rgba(201,168,76,0.2);
+  line-height: 1;
 }
 
 /* Botón reservar dentro de card */
@@ -654,22 +667,42 @@ footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   .card-horizontal { flex-direction: column; }
   .card-horizontal .card-imagen { width: 100%; height: 180px; }
   .nav-inner { justify-content: flex-start; }
-  .hero { min-height: 92vh; }
-  .manifiesto { padding: 20px; }
+  .hero { min-height: 86vh; min-height: 86svh; padding: 48px 20px 96px; }
+  .logo-img { width: 148px; }
+  .manifiesto { padding: 18px; margin-top: 28px; }
+  .scroll-cta { bottom: 104px; }
   .bebidas-hero { flex-direction: column; text-align: center; gap: 24px; padding: 28px 24px; }
   .bebidas-grid { grid-template-columns: 1fr; }
   .item-lista { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .item-lista-precio { margin-left: 0; }
+  .item-lista-precio { margin-left: 0; align-self: flex-end; }
   .precio-badge { display: none; }
   .precio-inline-mobile { display: inline-block; }
   .btn-whatsapp { bottom: 20px; right: 16px; width: 52px; height: 52px; }
   .btn-whatsapp svg { width: 26px; height: 26px; }
   .hero-cta-grupo { flex-direction: column; align-items: center; }
+  footer { padding-bottom: 96px; }
 }
 @media (max-width: 480px) {
   .footer-redes { gap: 8px; }
   .footer-red-link { font-size: 0.62rem; padding: 9px 14px; }
   .bebidas-imagen-deco img { width: 100px; height: 100px; }
+  .hero-cta-primary,
+  .hero-cta-secondary {
+    width: min(100%, 280px);
+    justify-content: center;
+  }
+  .nav-item { padding: 14px 16px; }
+}
+@media (hover: none) {
+  .card-plato:hover,
+  .bebida-item:hover,
+  .item-lista:hover,
+  .trust-badge:hover,
+  .footer-red-link:hover,
+  .btn-mapa:hover,
+  .btn-reservar:hover {
+    transform: none;
+  }
 }
 
 /* Respeta preferencias de movimiento reducido */
