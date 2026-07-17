@@ -29,7 +29,8 @@ Referencias actualmente pendientes:
 - `images/ribeye_andino.jpg`
 - `images/Chuleta_cerdo.jpg`
 - `images/filete_pollo.jpg`
-- `images/og_maky.jpg`
+
+`images/og_maky.jpg` si existe y se usa para la vista previa al compartir el sitio en WhatsApp, Facebook y otras redes.
 
 ## Mantenimiento del menu
 
@@ -46,6 +47,19 @@ Para cambiar comportamiento interactivo, editar `script.js`. El tracking de secc
 - Probar en celular, tablet y escritorio.
 - Verificar que las imagenes nuevas esten en `images/` con el mismo nombre usado en `index.html`.
 - Confirmar que precios, horarios, telefono y direccion sean los vigentes.
+
+## Render
+
+Este sitio puede desplegarse en Render como Static Site sin build command. El publish directory debe apuntar a la raiz del repositorio.
+
+Render permite configurar headers HTTP de sitios estaticos desde el Dashboard. Recomendacion para produccion:
+
+- `/*.html`: `Cache-Control: public, max-age=0, must-revalidate`
+- `/**/*.css`: `Cache-Control: public, max-age=86400`
+- `/**/*.js`: `Cache-Control: public, max-age=86400`
+- `/images/*`: `Cache-Control: public, max-age=604800`
+- `/*`: `X-Content-Type-Options: nosniff`
+- `/*`: `Referrer-Policy: strict-origin-when-cross-origin`
 
 ## Alcance actual
 
