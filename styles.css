@@ -335,6 +335,7 @@ body::before {
   width: 100%; height: 100%; object-fit: cover; display: block;
   transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
 }
+.card-imagen-pendiente { display: none; }
 .card-plato:hover .card-imagen img { transform: scale(1.07); }
 .card-imagen::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%;
@@ -693,6 +694,38 @@ footer > * { position: relative; z-index: 1; }
 .footer-red-link.tt:hover { color: #f0f0f0; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
 .footer-red-link.wa:hover { color: #6ee37a; border-color: rgba(110,227,122,0.35); background: rgba(110,227,122,0.08); }
 .footer-red-link.gm:hover { color: var(--tierra-clara); border-color: rgba(201,160,122,0.4); background: rgba(201,160,122,0.08); }
+.footer-map {
+  width: min(100%, 560px);
+  margin: -10px auto 34px;
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+}
+.footer-map iframe {
+  display: block;
+  width: 100%;
+  height: 180px;
+  border: 0;
+  filter: saturate(0.82) contrast(0.92);
+}
+.footer-map a {
+  display: block;
+  padding: 11px 16px;
+  color: rgba(237,227,210,0.72);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  transition: var(--transicion);
+}
+.footer-map a:hover {
+  color: var(--dorado-suave);
+  background: rgba(201,168,76,0.08);
+}
 .footer-copy { margin-top: 32px; font-size: 0.75rem; color: rgba(237,227,210,0.28); letter-spacing: 0.04em; line-height: 1.8; }
 .footer-copy a { color: rgba(237,227,210,0.5); text-decoration: none; transition: color 0.3s ease; }
 .footer-copy a:hover { color: var(--dorado-suave); }
@@ -776,6 +809,8 @@ footer > * { position: relative; z-index: 1; }
   .btn-whatsapp { bottom: 20px; right: 16px; width: 52px; height: 52px; }
   .btn-whatsapp svg { width: 26px; height: 26px; }
   .hero-cta-grupo { flex-direction: column; align-items: center; }
+  .footer-map { margin-bottom: 28px; }
+  .footer-map iframe { height: 150px; }
   footer { padding-bottom: 96px; }
 }
 @media (max-width: 480px) {

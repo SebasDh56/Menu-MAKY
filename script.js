@@ -98,10 +98,10 @@ function initNavScrollIndicator() {
 // ─── Skeleton loader: reemplaza fondo de .card-imagen con shimmer ─────────────
 function initSkeletonLoader() {
   document.querySelectorAll('.card-imagen').forEach(wrapper => {
-    wrapper.classList.add('skeleton');
     const img = wrapper.querySelector('img');
     if (!img) return;
 
+    wrapper.classList.add('skeleton');
     const removeShimmer = () => wrapper.classList.remove('skeleton');
     if (img.complete) { removeShimmer(); return; }
     img.addEventListener('load',  removeShimmer, { once: true });
@@ -178,6 +178,11 @@ function checkImageExists(imgEl, card) {
 
 function initDynamicImageValidation() {
   document.querySelectorAll('.card-plato, .card-horizontal, .guaguas-card').forEach(card => {
+    if (card.querySelector('.card-imagen-pendiente')) {
+      convertCardToList(card);
+      return;
+    }
+
     const img = card.querySelector('.card-imagen img');
     if (img) checkImageExists(img, card);
   });
