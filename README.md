@@ -1,6 +1,6 @@
 # Menu Maky
 
-Sitio estatico del menu publico de Maky Restaurante. El proyecto esta pensado para funcionar abriendo `index.html` directamente en el navegador o publicandolo como archivos estaticos.
+Sitio estatico del menu publico de Maky Restaurante. No es un proyecto Node, Vite, React ni de otro framework: no requiere `package.json`, `npm install` ni `npm run dev`.
 
 ## Estructura
 
@@ -8,18 +8,32 @@ Sitio estatico del menu publico de Maky Restaurante. El proyecto esta pensado pa
 - `styles.css`: estilos visuales, responsive, animaciones y estados de presentacion.
 - `script.js`: navegacion con offset, estado activo de categorias, animaciones, skeleton loader y fallback para imagenes opcionales.
 - `images/`: recursos visuales del menu.
+- `public/images/decorativas-ia/`: recursos decorativos IA optimizados en WebP.
+- `render.yaml`: blueprint para desplegar el sitio como Static Site en Render.
 
 ## Como ejecutar
 
-Abrir `index.html` en el navegador. No hay paso de instalacion, compilacion ni servidor requerido.
+Desde la raiz del proyecto:
 
-En VS Code tambien existe una configuracion para abrir el archivo desde `.vscode/launch.json`.
+```powershell
+python -m http.server 8080 --bind 127.0.0.1
+```
 
-## Imagenes opcionales de productos
+Luego abrir:
 
-Algunas tarjetas pueden apuntar a imagenes que todavia no existen en `images/`. Ese comportamiento es intencional: cuando la imagen no esta disponible, `script.js` convierte la tarjeta en un item de lista para evitar una imagen rota. Cuando se agregue el archivo con el mismo nombre, la tarjeta volvera a mostrarse con imagen en la siguiente carga.
+```text
+http://127.0.0.1:8080/
+```
 
-Referencias actualmente pendientes:
+Tambien puede servirse con cualquier servidor estatico equivalente, por ejemplo `npx serve .`, pero Node no es necesario para este proyecto.
+
+En VS Code, la configuracion `Serve static site` inicia el mismo servidor desde una terminal integrada. No intenta lanzar ni adjuntarse a Chrome.
+
+## Imagenes de productos pendientes
+
+Las tarjetas que todavia no tienen fotografia real usan un fondo artesanal generado por CSS, sin apuntar a archivos inexistentes y sin usar imagenes IA de platos. Cuando existan fotografias reales, reemplazar el fondo pendiente por un `<img>` con el archivo correspondiente y un `alt` descriptivo.
+
+Fotografias reales pendientes:
 
 - `images/pan_ajo.jpg`
 - `images/maduro_queso.jpg`
@@ -29,7 +43,8 @@ Referencias actualmente pendientes:
 - `images/ribeye_andino.jpg`
 - `images/Chuleta_cerdo.jpg`
 - `images/filete_pollo.jpg`
-- `images/og_maky.jpg`
+
+`images/og_maky.jpg` si existe y se usa para la vista previa al compartir el sitio en WhatsApp, Facebook y otras redes.
 
 ## Mantenimiento del menu
 
@@ -46,6 +61,28 @@ Para cambiar comportamiento interactivo, editar `script.js`. El tracking de secc
 - Probar en celular, tablet y escritorio.
 - Verificar que las imagenes nuevas esten en `images/` con el mismo nombre usado en `index.html`.
 - Confirmar que precios, horarios, telefono y direccion sean los vigentes.
+
+## Render
+
+Este sitio debe desplegarse en Render como Static Site.
+
+Configuracion recomendada en Dashboard:
+
+- Service Type: Static Site
+- Build Command: dejar vacio o usar `echo "No build required for static HTML site"`
+- Publish Directory: `.`
+
+El archivo `render.yaml` incluido usa `runtime: static`, `staticPublishPath: .` y un build command neutro para Blueprints.
+
+Render permite configurar headers HTTP de sitios estaticos desde el Dashboard. Recomendacion para produccion:
+
+- `/*.html`: `Cache-Control: public, max-age=0, must-revalidate`
+- `/**/*.css`: `Cache-Control: public, max-age=86400`
+- `/**/*.js`: `Cache-Control: public, max-age=86400`
+- `/images/*`: `Cache-Control: public, max-age=604800`
+- `/public/images/*`: `Cache-Control: public, max-age=604800`
+- `/*`: `X-Content-Type-Options: nosniff`
+- `/*`: `Referrer-Policy: strict-origin-when-cross-origin`
 
 ## Alcance actual
 

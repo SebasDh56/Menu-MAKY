@@ -1,0 +1,22 @@
+services:
+  - type: web
+    runtime: static
+    name: menu-maky
+    buildCommand: echo "No build required for static HTML site"
+    staticPublishPath: .
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+      - path: /images/*
+        name: Cache-Control
+        value: public, max-age=604800
+      - path: /public/images/*
+        name: Cache-Control
+        value: public, max-age=604800
